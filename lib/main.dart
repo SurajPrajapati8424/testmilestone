@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'screens/playaudio.dart';
 import 'screens/rating.dart';
+import 'widgets/button.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const HomePage(),
         "/rating": (context) => const RatingPage(),
+        "/playaudio": (context) => const PlayAudioScreen(),
       },
     );
   }
@@ -43,8 +46,16 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: const Center(
-            child: Text('SUPEER'),
+          appBar: AppBar(),
+          body: Column(
+            children: [
+              Button(
+                text: 'play',
+                onTap: () {
+                  Navigator.pushNamed(context, '/playaudio');
+                },
+              ),
+            ],
           ),
         );
       },

@@ -39,7 +39,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_screenutil: ^5.9.3
   in_app_review: ^2.0.9
-  just_audio: ^0.9.41
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
