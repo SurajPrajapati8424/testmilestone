@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
+import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
 void main() async {
@@ -27,11 +28,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      initialRoute: "/word",
       routes: {
         "/": (context) => const HomePage(),
         "/rating": (context) => const RatingPage(),
         "/playaudio": (context) => const PlayAudioScreen(),
+        "/word": (context) => const Wordcloud(),
       },
     );
   }
