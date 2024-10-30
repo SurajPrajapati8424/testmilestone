@@ -79,7 +79,7 @@ class Button extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    leftWidget ?? SizedBox(height: 0, width: 0),
+                    leftWidget ?? const SizedBox(height: 0, width: 0),
                     if (leftWidget != null)
                       const SizedBox(
                           width: 8), // add some space between image and text

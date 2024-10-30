@@ -65,7 +65,7 @@ class _AnswerInputWidgetState extends State<AnswerInputWidget> {
         TextFormField(
           controller: _controller,
           autofocus: false,
-          maxLines: widget.maxLines ?? null,
+          maxLines: widget.maxLines,
           maxLength: widget.maxLength,
           obscureText: false,
           keyboardType: widget.keyboardType ?? TextInputType.text,

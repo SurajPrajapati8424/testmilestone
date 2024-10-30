@@ -3,13 +3,6 @@ import 'package:audioplayers/audioplayers.dart';
 
 import '../widgets/button.dart';
 
-/**
-- Sample Audio
-https://assets.mixkit.co/active_storage/sfx/474/474.wav;
-https://assets.mixkit.co/active_storage/sfx/212/212.wav;
-https://assets.mixkit.co/active_storage/sfx/166/166.wav;
- */
-
 class PlayAudioScreen extends StatefulWidget {
   const PlayAudioScreen({super.key});
 
@@ -106,3 +99,10 @@ class AudioManager {
     isPlayingNotifier.dispose();
   }
 }
+
+/**
+- Sample Audio
+https://assets.mixkit.co/active_storage/sfx/474/474.wav;
+https://assets.mixkit.co/active_storage/sfx/212/212.wav;
+https://assets.mixkit.co/active_storage/sfx/166/166.wav;
+ */
