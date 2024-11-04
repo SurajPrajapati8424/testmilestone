@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: "/word",
+      initialRoute: "/",
       routes: {
         "/": (context) => const HomePage(),
         "/rating": (context) => const RatingPage(),
@@ -55,6 +55,24 @@ class HomePage extends StatelessWidget {
                 text: 'play',
                 onTap: () {
                   Navigator.pushNamed(context, '/playaudio');
+                },
+              ),
+              Button(
+                text: 'rate',
+                onTap: () {
+                  Navigator.pushNamed(context, '/rating');
+                },
+              ),
+              Button(
+                text: 'wordcloud',
+                onTap: () {
+                  Navigator.pushNamed(context, '/word');
+                },
+              ),
+              Button(
+                text: 'ads',
+                onTap: () {
+                  // test ads
                 },
               ),
             ],

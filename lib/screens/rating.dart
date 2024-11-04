@@ -184,9 +184,8 @@ class RatingDialogState extends State<RatingDialog> {
                   onPressed: () {
                     setState(() {
                       selectedRating = index + 1;
-                      if (selectedRating > 0 && selectedRating <= 3) {
-                        showFeedback = true;
-                      }
+                      showFeedback =
+                          (selectedRating > 0 && selectedRating <= 3);
                     });
                   },
                 ),
