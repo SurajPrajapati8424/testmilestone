@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:testmilestone/screens/adscreen.dart';
 
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
@@ -8,6 +10,8 @@ import 'widgets/button.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
@@ -51,6 +55,15 @@ class HomePage extends StatelessWidget {
           appBar: AppBar(),
           body: Column(
             children: [
+              // test ads
+              const Align(
+                alignment: Alignment.topCenter,
+                child: ResponsiveBanner(
+                  adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+                  adSize: AdSize.fullBanner,
+                ),
+              ),
+              //
               Button(
                 text: 'play',
                 onTap: () {
