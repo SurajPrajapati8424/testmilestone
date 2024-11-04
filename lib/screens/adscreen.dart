@@ -84,6 +84,69 @@ class BannerAdState extends State<ResponsiveBanner> {
   }
 }
 
+// Interstitial
+class InterstitialAdWidget {
+  InterstitialAd? interstitialAd;
+  bool isAdLoaded = false;
+
+  // Singleton pattern for easy access
+  static final InterstitialAdWidget instance = InterstitialAdWidget._internal();
+  factory InterstitialAdWidget() => instance;
+  InterstitialAdWidget._internal();
+
+  /// Load an interstitial ad
+  void loadInterstitialAd(String adUnitId) {
+    InterstitialAd.load(
+      adUnitId: adUnitId, // Test ad unit ID
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          interstitialAd = ad;
+          isAdLoaded = true;
+          interstitialAd?.setImmersiveMode(true); // Optional immersive mode
+
+          // Handle events on full-screen content
+          interstitialAd?.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (InterstitialAd ad) {
+              ad.dispose();
+              isAdLoaded = false;
+              // Load a new ad after the current one is closed
+              // loadInterstitialAd();
+            },
+            onAdFailedToShowFullScreenContent:
+                (InterstitialAd ad, AdError error) {
+              ad.dispose();
+              isAdLoaded = false;
+              debugPrint('Failed to show interstitial ad: $error');
+            },
+          );
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          debugPrint('Interstitial ad failed to load: $error');
+          isAdLoaded = false;
+        },
+      ),
+    );
+  }
+
+  /// Show the interstitial ad if loaded
+  void showInterstitialAd() {
+    if (isAdLoaded && interstitialAd != null) {
+      interstitialAd?.show();
+      isAdLoaded = false; // Reset the flag after showing the ad
+    } else {
+      debugPrint('Interstitial ad not ready yet');
+    }
+  }
+
+  /// Dispose of the interstitial ad
+  void dispose() {
+    interstitialAd?.dispose();
+  }
+}
+
+
+
 /**
 1. google_mobile_ads: ^5.2.0
 2. Sample Ad Manager app ID: ca-app-pub-3940256099942544~3347511713 inside <application>

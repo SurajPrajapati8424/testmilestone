@@ -12,6 +12,9 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  // Interstitial
+  InterstitialAdWidget()
+      .loadInterstitialAd('ca-app-pub-3940256099942544/1033173712');
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
@@ -86,6 +89,8 @@ class HomePage extends StatelessWidget {
                 text: 'ads',
                 onTap: () {
                   // test ads
+                  //  Show interstitial ad
+                  InterstitialAdWidget().showInterstitialAd();
                 },
               ),
             ],
