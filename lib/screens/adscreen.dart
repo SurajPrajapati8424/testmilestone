@@ -145,6 +145,71 @@ class InterstitialAdWidget {
   }
 }
 
+// Rewarded
+class RewardedAdService {
+  RewardedAd? rewardedAd;
+  // bool isAdLoaded = false;
+
+  // Singleton pattern for easy access
+  static final RewardedAdService instance = RewardedAdService._internal();
+  factory RewardedAdService() => instance;
+  RewardedAdService._internal();
+
+  /// Load a rewarded ad
+  void loadRewardedAd({required String adUnitId}) {
+    RewardedAd.load(
+      adUnitId: adUnitId, // Test ad unit ID
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (RewardedAd ad) {
+          rewardedAd = ad;
+          // isAdLoaded = true;
+
+          // Set up full-screen content callback to handle events
+          rewardedAd?.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (RewardedAd ad) {
+              ad.dispose();
+              // isAdLoaded = false;
+              loadRewardedAd(
+                  adUnitId:
+                      adUnitId); // Load a new ad after the current one is closed
+            },
+            onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+              ad.dispose();
+              // isAdLoaded = false;
+              debugPrint('Failed to show rewarded ad: $error');
+            },
+          );
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          debugPrint('Rewarded ad failed to load: $error');
+          // isAdLoaded = false;
+        },
+      ),
+    );
+  }
+
+  // Show the rewarded ad and handle the reward
+  void showRewardedAd(
+      {required Function(num rewardAmount) onUserEarnedReward}) {
+    if (/*isAdLoaded &&*/ rewardedAd != null) {
+      rewardedAd?.show(
+        onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+          onUserEarnedReward(reward.amount); // Pass the reward amount
+        },
+      );
+      // isAdLoaded = false; // Reset the flag after showing the ad
+    } else {
+      debugPrint('Rewarded ad not ready yet');
+    }
+  }
+
+  /// Dispose of the rewarded ad
+  void dispose() {
+    rewardedAd?.dispose();
+  }
+}
+
 
 
 /**

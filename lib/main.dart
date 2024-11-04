@@ -12,9 +12,6 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  // Interstitial
-  InterstitialAdWidget()
-      .loadInterstitialAd('ca-app-pub-3940256099942544/1033173712');
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
@@ -85,13 +82,48 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/word');
                 },
               ),
-              Button(
-                text: 'ads',
-                onTap: () {
-                  // test ads
-                  //  Show interstitial ad
-                  InterstitialAdWidget().showInterstitialAd();
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Button(
+                    text: 'init Interstitial',
+                    onTap: () {
+                      // Interstitial
+                      InterstitialAdWidget().loadInterstitialAd(
+                          'ca-app-pub-3940256099942544/1033173712');
+                    },
+                  ),
+                  Button(
+                    text: 'show Interstitial',
+                    onTap: () {
+                      //  Show interstitial ad
+                      InterstitialAdWidget().showInterstitialAd();
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Button(
+                    text: 'init Reward',
+                    onTap: () {
+                      // Init Reward
+                      RewardedAdService().loadRewardedAd(
+                          adUnitId: 'ca-app-pub-3940256099942544/5224354917');
+                    },
+                  ),
+                  Button(
+                    text: 'show Reward',
+                    onTap: () {
+                      //  Show Reward ad
+                      RewardedAdService().showRewardedAd(
+                          onUserEarnedReward: (val) {
+                        debugPrint('rewards is :$val');
+                      });
+                    },
+                  ),
+                ],
               ),
             ],
           ),
