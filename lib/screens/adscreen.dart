@@ -218,3 +218,107 @@ class RewardedAdService {
     rewardedAd?.dispose();
   }
 }
+
+// Native
+class NativeAdSingleton {
+  static final NativeAdSingleton _instance =
+      NativeAdSingleton._internal(adUnitId: '');
+
+  NativeAd? nativeAd;
+  bool isAdLoaded = false;
+  late String adUnitId;
+  final ValueNotifier<bool> nativeNotifier = ValueNotifier(false);
+
+  NativeAdSingleton._internal({required this.adUnitId});
+
+  // Factory constructor to return the same instance with the same adUnitId
+  factory NativeAdSingleton.instance(String adUnitId) {
+    _instance.adUnitId = adUnitId;
+    return _instance;
+  }
+
+  Future<void> initialize() async {
+    // Call this during app startup
+    await MobileAds.instance.initialize();
+  }
+
+  void loadAd(
+      {required TemplateType templateType,
+      required VoidCallback onAdLoaded,
+      required VoidCallback onAdFailed}) {
+    nativeAd = NativeAd(
+      adUnitId: adUnitId,
+      // factoryId: 'adFactoryExample',
+      listener: NativeAdListener(onAdLoaded: (ad) {
+        debugPrint('Native loaded');
+        isAdLoaded = true;
+        nativeNotifier.value = true;
+        onAdLoaded();
+      }, onAdFailedToLoad: (ad, error) {
+        debugPrint('Native ad failed to load: ${error.message}');
+        isAdLoaded = false;
+        nativeNotifier.value = false;
+        ad.dispose();
+        onAdFailed();
+      }, onAdClosed: (ad) {
+        ad.dispose();
+      }),
+      request: const AdRequest(),
+      // Optional: Customize the ad's style
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: templateType,
+        mainBackgroundColor: Colors.deepPurple,
+        cornerRadius: 10.w,
+        callToActionTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.white,
+          backgroundColor: Colors.red,
+          style: NativeTemplateFontStyle.bold,
+          size: 16.0,
+        ),
+        primaryTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.red,
+          backgroundColor: Colors.transparent,
+          style: NativeTemplateFontStyle.normal,
+          size: 16.0,
+        ),
+        secondaryTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.red,
+          backgroundColor: Colors.transparent,
+          style: NativeTemplateFontStyle.normal,
+          size: 14.0,
+        ),
+        tertiaryTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.red,
+          backgroundColor: Colors.transparent,
+          style: NativeTemplateFontStyle.normal,
+          size: 12.0,
+        ),
+      ),
+    );
+    nativeAd!.load();
+  }
+
+  Widget displayAd(
+      {double minWidth = 320,
+      double minHeight = 90,
+      double width = 400,
+      double height = 200}) {
+    if (isAdLoaded && nativeAd != null) {
+      return Container(
+        constraints: BoxConstraints(minWidth: minWidth, minHeight: minHeight),
+        width: width,
+        height: height,
+        child: AdWidget(ad: nativeAd!),
+      );
+    } else {
+      return const SizedBox(); // or a placeholder
+    }
+  }
+
+  void disposeAd() {
+    nativeAd?.dispose();
+    nativeAd = null;
+    isAdLoaded = false;
+    nativeNotifier.value = false;
+  }
+}

@@ -53,79 +53,127 @@ class HomePage extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(),
-          body: Column(
-            children: [
-              // test ads
-              const Align(
-                alignment: Alignment.topCenter,
-                child: ResponsiveBanner(
-                  adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-                  adSize: AdSize.fullBanner,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                // test ads
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: ResponsiveBanner(
+                    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+                    adSize: AdSize.fullBanner,
+                  ),
                 ),
-              ),
-              //
-              Button(
-                text: 'play',
-                onTap: () {
-                  Navigator.pushNamed(context, '/playaudio');
-                },
-              ),
-              Button(
-                text: 'rate',
-                onTap: () {
-                  Navigator.pushNamed(context, '/rating');
-                },
-              ),
-              Button(
-                text: 'wordcloud',
-                onTap: () {
-                  Navigator.pushNamed(context, '/word');
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Button(
-                    text: 'init Interstitial',
-                    onTap: () {
-                      // Interstitial
-                      InterstitialAdWidget().loadInterstitialAd(
-                          'ca-app-pub-3940256099942544/1033173712');
+                //
+                Button(
+                  text: 'play',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/playaudio');
+                  },
+                ),
+                Button(
+                  text: 'rate',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/rating');
+                  },
+                ),
+                Button(
+                  text: 'wordcloud',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/word');
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Button(
+                      text: 'init Interstitial',
+                      onTap: () {
+                        // Interstitial
+                        InterstitialAdWidget().loadInterstitialAd(
+                            'ca-app-pub-3940256099942544/1033173712');
+                      },
+                    ),
+                    Button(
+                      text: 'show Interstitial',
+                      onTap: () {
+                        //  Show interstitial ad
+                        InterstitialAdWidget().showInterstitialAd();
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Button(
+                      text: 'init Reward',
+                      onTap: () async {
+                        // Init Reward
+                        await RewardedAdService().loadRewardedAd(
+                            adUnitId: 'ca-app-pub-3940256099942544/5224354917');
+                      },
+                    ),
+                    Button(
+                      text: 'show Reward',
+                      onTap: () async {
+                        //  Show Reward ad
+                        await RewardedAdService().showRewardedAd(
+                            onUserEarnedReward: (val) {
+                          debugPrint('rewards is :$val');
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Button(
+                      text: 'init Native',
+                      onTap: () {
+                        // Init Reward
+                        NativeAdSingleton.instance(
+                                'ca-app-pub-3940256099942544/2247696110')
+                            .loadAd(
+                                templateType: TemplateType.medium,
+                                onAdLoaded: () {},
+                                onAdFailed: () {});
+                      },
+                    ),
+                    Button(
+                      text: 'dispose Native',
+                      onTap: () {
+                        NativeAdSingleton.instance(
+                                'ca-app-pub-3940256099942544/2247696110')
+                            .disposeAd();
+                      },
+                    ),
+                  ],
+                ),
+                Container(
+                  child: ValueListenableBuilder(
+                    valueListenable: NativeAdSingleton.instance(
+                            'ca-app-pub-3940256099942544/2247696110')
+                        .nativeNotifier,
+                    builder: (context, isAdLoaded, child) {
+                      if (isAdLoaded) {
+                        return NativeAdSingleton.instance(
+                                'ca-app-pub-3940256099942544/2247696110')
+                            .displayAd(
+                          width: 400,
+                          height: 400,
+                          // for Medium
+                          //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
+                        );
+                      } else {
+                        return const CircularProgressIndicator(); // Loading indicator
+                      }
                     },
                   ),
-                  Button(
-                    text: 'show Interstitial',
-                    onTap: () {
-                      //  Show interstitial ad
-                      InterstitialAdWidget().showInterstitialAd();
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Button(
-                    text: 'init Reward',
-                    onTap: () {
-                      // Init Reward
-                      RewardedAdService().loadRewardedAd(
-                          adUnitId: 'ca-app-pub-3940256099942544/5224354917');
-                    },
-                  ),
-                  Button(
-                    text: 'show Reward',
-                    onTap: () {
-                      //  Show Reward ad
-                      RewardedAdService().showRewardedAd(
-                          onUserEarnedReward: (val) {
-                        debugPrint('rewards is :$val');
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         );
       },
