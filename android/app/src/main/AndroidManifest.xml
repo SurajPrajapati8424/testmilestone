@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- PERMISSION TO ACCESS MEDIA -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="testmilestone"
         android:name="${applicationName}"
@@ -26,7 +31,7 @@
             </intent-filter>
         </activity>
         <!--  Ad Mob  -->
-<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -44,5 +49,4 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
-    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

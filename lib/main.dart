@@ -8,6 +8,8 @@ import 'screens/rating.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
+import 'function/download.dart';
+
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
@@ -143,7 +145,8 @@ class HomePage extends StatelessWidget {
                     ),
                     Button(
                       text: 'dispose Native',
-                      onTap: () {
+                      onTap: () async {
+                        await download();
                         NativeAdSingleton.instance(
                                 'ca-app-pub-3940256099942544/2247696110')
                             .disposeAd();
