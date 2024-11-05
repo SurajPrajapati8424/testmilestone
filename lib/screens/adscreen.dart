@@ -95,12 +95,13 @@ class InterstitialAdWidget {
   InterstitialAdWidget._internal();
 
   /// Load an interstitial ad
-  void loadInterstitialAd(String adUnitId) {
+  Future<void> loadInterstitialAd(String adUnitId) async {
     InterstitialAd.load(
       adUnitId: adUnitId, // Test ad unit ID
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
+          debugPrint('Interstitial Loaded');
           interstitialAd = ad;
           isAdLoaded = true;
           interstitialAd?.setImmersiveMode(true); // Optional immersive mode
@@ -130,7 +131,7 @@ class InterstitialAdWidget {
   }
 
   /// Show the interstitial ad if loaded
-  void showInterstitialAd() {
+  Future<void> showInterstitialAd() async {
     if (isAdLoaded && interstitialAd != null) {
       interstitialAd?.show();
       isAdLoaded = false; // Reset the flag after showing the ad
@@ -147,6 +148,7 @@ class InterstitialAdWidget {
 
 // Rewarded
 class RewardedAdService {
+  // static RewardedAdService? _instance;
   RewardedAd? rewardedAd;
   // bool isAdLoaded = false;
 
@@ -154,14 +156,21 @@ class RewardedAdService {
   static final RewardedAdService instance = RewardedAdService._internal();
   factory RewardedAdService() => instance;
   RewardedAdService._internal();
+  // Singleton pattern
+  // static RewardedAdService get instance {
+  //   _instance ??= RewardedAdService._();
+  //   return _instance!;
+  // }
+  // RewardedAdService._();
 
-  /// Load a rewarded ad
-  void loadRewardedAd({required String adUnitId}) {
+  // Load a rewarded ad
+  Future<void> loadRewardedAd({required String adUnitId}) async {
     RewardedAd.load(
       adUnitId: adUnitId, // Test ad unit ID
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
+          debugPrint('Rewarded loaded');
           rewardedAd = ad;
           // isAdLoaded = true;
 
@@ -190,8 +199,8 @@ class RewardedAdService {
   }
 
   // Show the rewarded ad and handle the reward
-  void showRewardedAd(
-      {required Function(num rewardAmount) onUserEarnedReward}) {
+  Future<void> showRewardedAd(
+      {required Function(num rewardAmount) onUserEarnedReward}) async {
     if (/*isAdLoaded &&*/ rewardedAd != null) {
       rewardedAd?.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
@@ -209,104 +218,3 @@ class RewardedAdService {
     rewardedAd?.dispose();
   }
 }
-
-
-
-/**
-1. google_mobile_ads: ^5.2.0
-2. Sample Ad Manager app ID: ca-app-pub-3940256099942544~3347511713 inside <application>
-  <meta-data
-      android:name="com.google.android.gms.ads.APPLICATION_ID"
-      android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
-3. 
-
-
- https://admanager.google.com/
-
- */
-/* // 5. Banner Ad Implementation Example
-class BannerAdWidget extends StatefulWidget {
-  const BannerAdWidget({super.key});
-
-  @override
-  BannerAdWidgetState createState() => BannerAdWidgetState();
-}
-
-class BannerAdWidgetState extends State<BannerAdWidget> {
-  BannerAd? bannerAd;
-  bool isLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadAd();
-  }
-
-  void _loadAd() {
-    bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111', // Test ad unit ID
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            isLoaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-        },
-      ),
-    );
-
-    bannerAd?.load();
-  }
-
-  @override
-  void dispose() {
-    bannerAd?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.deepPurple.shade100,
-      appBar: AppBar(
-        title: const Text('Ads'),
-      ),
-      body: Stack(
-        children: [
-          const TextWidget(
-              text: 'This is Ad Screen', fontSize: 18, color: Colors.red),
-          adpopup(context, isLoaded, bannerAd)
-        ],
-      ),
-    );
-  }
-}
-
-Widget adpopup(BuildContext context, bool isLoaded, BannerAd? bannerAd) {
-  return AlertDialog(
-      actions: [
-        Button(
-          text: 'close',
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-        )
-      ],
-      content: isLoaded
-          ? SizedBox(
-              width: bannerAd!.size.width.toDouble(),
-              height: bannerAd.size.height.toDouble(),
-              child: AdWidget(ad: bannerAd),
-            )
-          : const SizedBox(
-              height: 50,
-              child: CircularProgressIndicator(
-                color: Color(0xFF00C85C),
-              ),
-            ));
-}
-*/
