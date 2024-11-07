@@ -128,7 +128,10 @@ class HomePage extends StatelessWidget {
                     ),
                     Button(
                       text: 'open in App',
-                      onTap: () async {},
+                      onTap: () {
+                        // showQuestionOption(context, 'https://youtube.com');
+                        openInAppWebView(context, 'https://youtube.com');
+                      },
                     ),
                   ],
                 ),
