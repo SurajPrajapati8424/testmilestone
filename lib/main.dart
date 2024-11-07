@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 
+import 'function/webview.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
 import 'screens/wordcloud.dart';
@@ -113,6 +114,21 @@ class HomePage extends StatelessWidget {
                         //  Show interstitial ad
                         InterstitialAdWidget().showInterstitialAd();
                       },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Button(
+                      text: 'open in Chrome',
+                      onTap: () async {
+                        await Browser().open(url: 'https://flutter.dev');
+                      },
+                    ),
+                    Button(
+                      text: 'open in App',
+                      onTap: () async {},
                     ),
                   ],
                 ),
