@@ -13,99 +13,79 @@
 // alartDialog (color) =warning internet+
 
 import 'dart:io';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 
 // const url = 'suraj';
-String fileName = 'tech';
-String ext = 'csv';
-const url = 'https://wsform.com/wp-content/uploads/2021/04/day.csv';
-// final response = await http.head(Uri.parse(url));
-// String? mime = response.headers['content-type'];
-// debugPrint('mime :$mime');
-// final file = File(filePath);
-// await file.create(); // Create an empty file
-// debugPrint('File created at: $filePath');
-Future<void> download() async {
-  // final response = await http.get(Uri.parse(url));
-  // Map<String, String> mime = response.headers;
-  // debugPrint('$mime');
-  final Uri? uri = Uri.tryParse(url);
-  final bool isUrl =
-      uri != null && (uri.scheme == 'http' || uri.scheme == 'https');
-  debugPrint('url type:$isUrl');
-  // Get the application documents directory
-  final directory = await getExternalStorageDirectory();
-  if (!isUrl) {
-    // If it's not a URL
-    String filename = '$fileName.$ext'; // Append extension
-    String filePath = '${directory!.path}/$filename';
-    // Create an empty file with the given name and extension
-    final file = File(filePath);
-    await file.create(); // Create the file
-    debugPrint('File created at: $filePath');
-  } else {
-    // It's URL
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        String filename = '$fileName.$ext'; // Append extension
-        String filePath = '${directory!.path}/$filename';
-        // Write the response bytes to the file
-        final file = File(filePath);
-        await file.writeAsBytes(response.bodyBytes);
-        debugPrint('File downloaded at:$filePath');
-        // Get and print the file size
-      } else {
-        debugPrint('Failed to download file: ${response.statusCode}');
-      }
-    } catch (e) {
-      debugPrint('Error occurred while downloading file: $e');
+// String fileName = 'tech';
+// String ext = 'csv';
+// const url = 'https://wsform.com/wp-content/uploads/2021/04/day.csv';
+
+Future<void> downloadFile(
+    String urlOrString, String fileName, String extensionName) async {
+  if (await requestStoragePermission()) {
+    debugPrint('Permission granted');
+
+    final Uri? uri = Uri.tryParse(urlOrString);
+    final bool isUrl =
+        uri != null && (uri.scheme == 'http' || uri.scheme == 'https');
+    debugPrint('url type:$isUrl');
+
+    final directory = Directory('/storage/emulated/0/Download');
+    if (!await directory.exists()) {
+      await directory.create(recursive: true);
     }
+
+    String filename;
+    if (isUrl) {
+      // Extract filename from URL if available, else use default
+      filename = uri.pathSegments.isNotEmpty
+          ? uri.pathSegments.last
+          : 'downloaded_file';
+    } else {
+      if (fileName.isEmpty || extensionName.isEmpty) {
+        debugPrint('File name and extension are required for non-URL input.');
+        return;
+      }
+      filename = '$fileName.$extensionName';
+    }
+    String filePath = '${directory.path}/$filename';
+
+    if (!isUrl) {
+      final file = File(filePath);
+      await file.create();
+      debugPrint('File created at: $filePath');
+    } else {
+      try {
+        final response = await http.get(Uri.parse(urlOrString));
+        if (response.statusCode == 200) {
+          // Write the response bytes to the file
+          final file = File(filePath);
+          await file.writeAsBytes(response.bodyBytes);
+          debugPrint('File downloaded at: $filePath');
+        } else {
+          debugPrint('Failed to download file: ${response.statusCode}');
+        }
+      } catch (e) {
+        debugPrint('Error occurred while downloading file: $e');
+      }
+    }
+  } else {
+    debugPrint('Permission denied');
+    return;
   }
-
-  // if (url.isEmpty || url.trim() == '') {
-  //   debugPrint('url is empty');
-  //   try {
-  //     final Directory? appDirectory = await getExternalStorageDirectory();
-  //     final filePath = '${appDirectory!.path}/$fileName.$ext';
-  //     final file = File(filePath);
-  //     await file.create(); // Create an empty file
-  //   } catch (e) {
-  //     debugPrint('Failed to save blank file:$e');
-  //   }
-  // }
-  // try {
-  //   // Get the application documents directory
-  //   // Make the HTTP GET request to download the file content
-  //   final response = await http.get(Uri.parse(url));
-
-  //   if (response.statusCode == 200) {
-  //     // Write the response bytes to the file
-  //     final file = File(filePath);
-  //     await file.writeAsBytes(response.bodyBytes);
-  //     debugPrint('File downloaded at:$filePath');
-  //     // Get and print the file size
-  //   } else {
-  //     debugPrint('Failed to download file: ${response.statusCode}');
-  //   }
-  // } catch (e) {
-  //   debugPrint('failed to save :$e');
-  // }
 }
 
-
-// // Permission
-// Future<bool> requestStoragePermission() async {
-//   var status = await Permission.storage.status;
-//   if (!status.isGranted) {
-//     status = await Permission.storage.request();
-//   }
-//   debugPrint('permission: $status');
-//   return status.isGranted;
-// }
+// Permission
+Future<bool> requestStoragePermission() async {
+  var status = await Permission.storage.status;
+  if (!status.isGranted) {
+    status = await Permission.storage.request();
+  }
+  debugPrint('permission: $status');
+  return status.isGranted;
+}
 
 /*
 Future<int> getFileSize(String filePath) async {
@@ -127,5 +107,4 @@ Future<int> getFileSize(String filePath) async {
     return -1; // Indicate an error
   }
 }
-
  */

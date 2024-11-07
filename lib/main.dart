@@ -85,6 +85,17 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/word');
                   },
                 ),
+                Button(
+                  text: 'download',
+                  onTap: () async {
+                    const urlOrString = 'suraj';
+                    String fileName = 'tech';
+                    String extensionName = 'csv';
+                    // const urlOrString =
+                    //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
+                    await downloadFile(urlOrString, fileName, extensionName);
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -146,7 +157,6 @@ class HomePage extends StatelessWidget {
                     Button(
                       text: 'dispose Native',
                       onTap: () async {
-                        await download();
                         NativeAdSingleton.instance(
                                 'ca-app-pub-3940256099942544/2247696110')
                             .disposeAd();
