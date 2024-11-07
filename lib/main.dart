@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 
 import 'function/webview.dart';
+import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
 import 'screens/wordcloud.dart';
@@ -96,6 +97,15 @@ class HomePage extends StatelessWidget {
                     //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
                     await downloadFile(urlOrString, fileName, extensionName);
                   },
+                ),
+                Button(
+                  text: 'No Internet',
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NoInternetScreen(),
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
