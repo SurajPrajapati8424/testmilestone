@@ -7,6 +7,7 @@ import 'function/webview.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
+import 'screens/richtexteditor.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -68,6 +69,27 @@ class HomePage extends StatelessWidget {
                     adSize: AdSize.fullBanner,
                   ),
                 ),
+                Container(
+                  child: ValueListenableBuilder(
+                    valueListenable: NativeAdSingleton.instance(
+                            'ca-app-pub-3940256099942544/2247696110')
+                        .nativeNotifier,
+                    builder: (context, isAdLoaded, child) {
+                      if (isAdLoaded) {
+                        return NativeAdSingleton.instance(
+                                'ca-app-pub-3940256099942544/2247696110')
+                            .displayAd(
+                          width: 400,
+                          height: 350,
+                          // for Medium
+                          //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
+                        );
+                      } else {
+                        return const CircularProgressIndicator(); // Loading indicator
+                      }
+                    },
+                  ),
+                ),
                 //
                 Button(
                   text: 'play',
@@ -104,6 +126,15 @@ class HomePage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const NoInternetScreen(),
+                    ),
+                  ),
+                ),
+                Button(
+                  text: 'Word Doc',
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WordDoc(),
                     ),
                   ),
                 ),
@@ -174,7 +205,7 @@ class HomePage extends StatelessWidget {
                     Button(
                       text: 'init Native',
                       onTap: () {
-                        // Init Reward
+                        // Init Native
                         NativeAdSingleton.instance(
                                 'ca-app-pub-3940256099942544/2247696110')
                             .loadAd(
@@ -193,27 +224,12 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  child: ValueListenableBuilder(
-                    valueListenable: NativeAdSingleton.instance(
-                            'ca-app-pub-3940256099942544/2247696110')
-                        .nativeNotifier,
-                    builder: (context, isAdLoaded, child) {
-                      if (isAdLoaded) {
-                        return NativeAdSingleton.instance(
-                                'ca-app-pub-3940256099942544/2247696110')
-                            .displayAd(
-                          width: 400,
-                          height: 400,
-                          // for Medium
-                          //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
-                        );
-                      } else {
-                        return const CircularProgressIndicator(); // Loading indicator
-                      }
-                    },
-                  ),
-                ),
+
+                // // test
+                // NativeBasicAd(
+                //   adUnitId: 'ca-app-pub-3940256099942544/2247696110',
+                //   templateType: TemplateType.medium,
+                // ),
               ],
             ),
           ),
