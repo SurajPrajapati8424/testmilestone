@@ -8,6 +8,7 @@ import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
 import 'screens/richtexteditor.dart';
+import 'screens/safetextscreen.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
@@ -235,6 +236,12 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SlidingToast()))),
+                    Button(
+                        text: 'Safe Text',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SafetextScreen()))),
                   ],
                 ),
 
