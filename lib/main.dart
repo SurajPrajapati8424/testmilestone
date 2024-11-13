@@ -10,6 +10,7 @@ import 'screens/blurhashscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/popuppremiumcontent.dart';
+import 'screens/profile.dart';
 import 'screens/rating.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
@@ -272,6 +273,12 @@ class HomePage extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) =>
                                     const AchievementAndLogout()))),
+                    Button(
+                        text: 'Profile',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProfilePage()))),
                   ],
                 ),
 
