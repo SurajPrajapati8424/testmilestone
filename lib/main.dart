@@ -5,6 +5,7 @@ import 'package:testmilestone/screens/adscreen.dart';
 
 import 'function/webview.dart';
 import 'screens/adblockscreen.dart';
+import 'screens/blurhashscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
@@ -249,6 +250,12 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AdblockScreen()))),
+                    Button(
+                        text: 'Blur Hash',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BlurHashApp()))),
                   ],
                 ),
 

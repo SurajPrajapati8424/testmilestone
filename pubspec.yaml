@@ -30,10 +30,12 @@ environment:
 dependencies:
   adblock_detector: ^0.0.2
   audioplayers: ^6.1.0
+  blurhash_dart: ^1.2.1
   connectivity_plus: ^6.1.0
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_blurhash: ^0.8.2
   flutter_inappwebview: ^6.1.5
   flutter_quill: ^10.8.5
   flutter_quill_extensions: ^10.8.5
@@ -42,7 +44,10 @@ dependencies:
   google_fonts: ^6.2.1
   google_mobile_ads: ^5.2.0
   http: ^1.2.2
+  image: ^4.3.0
+  image_picker: ^1.1.2
   in_app_review: ^2.0.9
+  path_provider: ^2.1.5
   permission_handler: ^11.3.1
   safe_text: ^1.0.7
   smooth_corner: ^1.1.0
