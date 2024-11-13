@@ -8,6 +8,7 @@ import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/rating.dart';
 import 'screens/richtexteditor.dart';
+import 'screens/slidetoastscreen.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -91,137 +92,149 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 //
-                Button(
-                  text: 'play',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/playaudio');
-                  },
-                ),
-                Button(
-                  text: 'rate',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/rating');
-                  },
-                ),
-                Button(
-                  text: 'wordcloud',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/word');
-                  },
-                ),
-                Button(
-                  text: 'download',
-                  onTap: () async {
-                    const urlOrString = 'suraj';
-                    String fileName = 'tech';
-                    String extensionName = 'csv';
-                    // const urlOrString =
-                    //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
-                    await downloadFile(urlOrString, fileName, extensionName);
-                  },
-                ),
-                Button(
-                  text: 'No Internet',
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NoInternetScreen(),
-                    ),
-                  ),
-                ),
-                Button(
-                  text: 'Word Doc',
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const WordDoc(),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
                   children: [
                     Button(
-                      text: 'init Interstitial',
+                      text: 'play',
                       onTap: () {
-                        // Interstitial
-                        InterstitialAdWidget().loadInterstitialAd(
-                            'ca-app-pub-3940256099942544/1033173712');
+                        Navigator.pushNamed(context, '/playaudio');
                       },
                     ),
                     Button(
-                      text: 'show Interstitial',
+                      text: 'rate',
                       onTap: () {
-                        //  Show interstitial ad
-                        InterstitialAdWidget().showInterstitialAd();
-                      },
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Button(
-                      text: 'open in Chrome',
-                      onTap: () async {
-                        await Browser().open(url: 'https://flutter.dev');
+                        Navigator.pushNamed(context, '/rating');
                       },
                     ),
                     Button(
-                      text: 'open in App',
+                      text: 'wordcloud',
                       onTap: () {
-                        // showQuestionOption(context, 'https://youtube.com');
-                        openInAppWebView(context, 'https://youtube.com');
+                        Navigator.pushNamed(context, '/word');
                       },
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
                     Button(
-                      text: 'init Reward',
+                      text: 'download',
                       onTap: () async {
-                        // Init Reward
-                        await RewardedAdService().loadRewardedAd(
-                            adUnitId: 'ca-app-pub-3940256099942544/5224354917');
+                        const urlOrString = 'suraj';
+                        String fileName = 'tech';
+                        String extensionName = 'csv';
+                        // const urlOrString =
+                        //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
+                        await downloadFile(
+                            urlOrString, fileName, extensionName);
                       },
                     ),
                     Button(
-                      text: 'show Reward',
-                      onTap: () async {
-                        //  Show Reward ad
-                        await RewardedAdService().showRewardedAd(
-                            onUserEarnedReward: (val) {
-                          debugPrint('rewards is :$val');
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Button(
-                      text: 'init Native',
-                      onTap: () {
-                        // Init Native
-                        NativeAdSingleton.instance(
-                                'ca-app-pub-3940256099942544/2247696110')
-                            .loadAd(
-                                templateType: TemplateType.medium,
-                                onAdLoaded: () {},
-                                onAdFailed: () {});
-                      },
+                      text: 'No Internet',
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NoInternetScreen(),
+                        ),
+                      ),
                     ),
                     Button(
-                      text: 'dispose Native',
-                      onTap: () async {
-                        NativeAdSingleton.instance(
-                                'ca-app-pub-3940256099942544/2247696110')
-                            .disposeAd();
-                      },
+                      text: 'Word Doc',
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const WordDoc(),
+                        ),
+                      ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Button(
+                          text: 'init Interstitial',
+                          onTap: () {
+                            // Interstitial
+                            InterstitialAdWidget().loadInterstitialAd(
+                                'ca-app-pub-3940256099942544/1033173712');
+                          },
+                        ),
+                        Button(
+                          text: 'show Interstitial',
+                          onTap: () {
+                            //  Show interstitial ad
+                            InterstitialAdWidget().showInterstitialAd();
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Button(
+                          text: 'open in Chrome',
+                          onTap: () async {
+                            await Browser().open(url: 'https://flutter.dev');
+                          },
+                        ),
+                        Button(
+                          text: 'open in App',
+                          onTap: () {
+                            // showQuestionOption(context, 'https://youtube.com');
+                            openInAppWebView(context, 'https://youtube.com');
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Button(
+                          text: 'init Reward',
+                          onTap: () async {
+                            // Init Reward
+                            await RewardedAdService().loadRewardedAd(
+                                adUnitId:
+                                    'ca-app-pub-3940256099942544/5224354917');
+                          },
+                        ),
+                        Button(
+                          text: 'show Reward',
+                          onTap: () async {
+                            //  Show Reward ad
+                            await RewardedAdService().showRewardedAd(
+                                onUserEarnedReward: (val) {
+                              debugPrint('rewards is :$val');
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Button(
+                          text: 'init Native',
+                          onTap: () {
+                            // Init Native
+                            NativeAdSingleton.instance(
+                                    'ca-app-pub-3940256099942544/2247696110')
+                                .loadAd(
+                                    templateType: TemplateType.medium,
+                                    onAdLoaded: () {},
+                                    onAdFailed: () {});
+                          },
+                        ),
+                        Button(
+                          text: 'dispose Native',
+                          onTap: () async {
+                            NativeAdSingleton.instance(
+                                    'ca-app-pub-3940256099942544/2247696110')
+                                .disposeAd();
+                          },
+                        ),
+                      ],
+                    ),
+                    Button(
+                        text: 'Sliding Toast',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SlidingToast()))),
                   ],
                 ),
 
