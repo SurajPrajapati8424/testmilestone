@@ -8,6 +8,7 @@ import 'screens/adblockscreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
+import 'screens/popuppremiumcontent.dart';
 import 'screens/rating.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
@@ -256,6 +257,13 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const BlurHashApp()))),
+                    Button(
+                        text: 'Premium Content',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const PopupPremiumContent()))),
                   ],
                 ),
 
