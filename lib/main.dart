@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 
 import 'function/webview.dart';
+import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/nointernet.dart';
@@ -264,6 +265,13 @@ class HomePage extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) =>
                                     const PopupPremiumContent()))),
+                    Button(
+                        text: 'Achievement And Logout',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const AchievementAndLogout()))),
                   ],
                 ),
 

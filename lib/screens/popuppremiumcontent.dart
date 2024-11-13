@@ -26,67 +26,72 @@ void showLightPremiumContent(BuildContext context) {
     builder: (builder) {
       return AlertDialog(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.w)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.w)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(height: 10.w),
               SizedBox(
-                width: 100.w,
-                height: 120.w,
+                width: 150.w,
+                height: 150.w,
                 child: Image.network(
                   'https://cdn-icons-png.freepik.com/512/14026/14026930.png?ga=GA1.1.2087962844.1731066583',
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 7.w),
+              SizedBox(height: 25.w),
               TextWidget(
                 text: 'Premium Content',
-                fontSize: 18.sp,
+                fontSize: 22.w,
                 color: Colors.black,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
+                textAlign: TextAlign.center,
               ),
-              SizedBox(height: 7.w),
+              SizedBox(height: 20.w),
               TextWidget(
                 text:
-                    'Upgrade your plan to uncloc all course and Premium contents',
-                fontSize: 16.sp,
+                    'Upgrade your plan to unlock all course and Premium contents.',
+                fontSize: 16.w,
                 color: Colors.black,
-                fontWeight: FontWeight.normal,
+                fontWeight: FontWeight.w600,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 25.w),
+              Row(
+                children: [
+                  Expanded(
+                    child: Button(
+                      text: 'Upgrade Plan',
+                      height: 50.w,
+                      textCenter: true,
+                      fontSize: 16.w,
+                      textColor: Colors.white,
+                      color: Colors.blue.shade600,
+                      borderRadius: 20.w,
+                      onTap: () {},
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 12.w),
               Row(
                 children: [
                   Expanded(
                     child: Button(
-                      text: 'Upgrade Plan',
-                      textCenter: true,
-                      fontSize: 18.w,
-                      textColor: Colors.white,
-                      color: const Color(0xFF00C85C),
-                      borderRadius: 22.w,
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 7.w,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Button(
                       text: 'Maybe Later',
+                      height: 50.w,
                       textCenter: true,
-                      fontSize: 18.w,
-                      textColor: Colors.black,
-                      color: Colors.grey.shade200,
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w700,
+                      textColor: Colors.blue.shade600,
+                      color: Colors.blue.shade100.withOpacity(0.2),
                       borderRadius: 22.w,
                       onTap: () {},
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 15.w),
             ],
           ));
     },
