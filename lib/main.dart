@@ -8,6 +8,7 @@ import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
 import 'screens/blurhashscreen.dart';
+import 'screens/feedbackscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
 import 'screens/popuppremiumcontent.dart';
@@ -20,6 +21,7 @@ import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
 import 'function/download.dart';
+import 'package:feedback/feedback.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -28,7 +30,7 @@ void main() async {
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
-      child: MyApp(),
+      child: BetterFeedback(child: MyApp()),
     ),
   );
 }
@@ -286,6 +288,12 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AddImageScreen()))),
+                    Button(
+                        text: 'Feedback',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const FeedbackScreen()))),
                   ],
                 ),
 

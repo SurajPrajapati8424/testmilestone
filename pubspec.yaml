@@ -33,9 +33,11 @@ dependencies:
   blurhash_dart: ^1.2.1
   connectivity_plus: ^6.1.0
   cupertino_icons: ^1.0.8
+  feedback: ^3.1.0
   flutter:
     sdk: flutter
   flutter_blurhash: ^0.8.2
+  flutter_email_sender: ^6.0.3
   flutter_inappwebview: ^6.1.5
   flutter_quill: ^10.8.5
   flutter_quill_extensions: ^10.8.5
@@ -56,12 +58,6 @@ dependencies:
   word_cloud: ^1.0.3
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
