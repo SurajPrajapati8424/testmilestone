@@ -6,6 +6,7 @@ import 'package:testmilestone/screens/adscreen.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
+import 'screens/addimagescreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/playaudio.dart';
@@ -279,6 +280,12 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ProfilePage()))),
+                    Button(
+                        text: 'Add Image',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AddImageScreen()))),
                   ],
                 ),
 

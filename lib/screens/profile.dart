@@ -66,6 +66,7 @@ class CustomAppBar extends StatelessWidget {
   final List<Widget>? leftWidgets;
   final List<Widget>? rightWidgets;
   final TextAlign? textAlign;
+  final double? fontSize;
   const CustomAppBar({
     super.key,
     required this.title,
@@ -75,6 +76,7 @@ class CustomAppBar extends StatelessWidget {
     this.leftWidgets,
     this.rightWidgets,
     this.textAlign,
+    this.fontSize,
   });
 
   @override
@@ -101,7 +103,7 @@ class CustomAppBar extends StatelessWidget {
             ),
           if (isBackButton == false && leftWidgets!.isNotEmpty)
             Padding(
-              padding: EdgeInsets.only(left: 144.w),
+              padding: EdgeInsets.only(left: 14.w),
               child: GestureDetector(
                   onTap: onLeftWidgetTap, child: Row(children: leftWidgets!)),
             ),
@@ -116,7 +118,7 @@ class CustomAppBar extends StatelessWidget {
                 text: title,
                 textOverflow: TextOverflow.ellipsis,
                 color: const Color(0xFF2A2A2A),
-                fontSize: 17.5.w,
+                fontSize: fontSize ?? 17.5.w,
                 fontWeight: FontWeight.w800,
                 textAlign: textAlign ?? TextAlign.start,
               ),
@@ -169,7 +171,7 @@ class UserProfile extends StatelessWidget {
                         imgUrl,
                       ),
                       backgroundColor: const Color(0xFF00C85C),
-                      child: const TextWidget(text: 'Profile'),
+                      child: const SizedBox.shrink(),
                     ),
                   ),
                 ),
