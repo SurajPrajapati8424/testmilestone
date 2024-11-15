@@ -29,6 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   adblock_detector: ^0.0.2
+  animated_countdown: ^0.0.3
+  animated_text_kit: ^4.2.2
   audioplayers: ^6.1.0
   blurhash_dart: ^1.2.1
   connectivity_plus: ^6.1.0
@@ -52,6 +54,7 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   path_provider: ^2.1.5
   permission_handler: ^11.3.1
+  readmore: ^3.0.0
   safe_text: ^1.0.7
   smooth_corner: ^1.1.0
   webview_flutter: ^4.9.0

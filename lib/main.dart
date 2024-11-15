@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 
+import 'function/countdown.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
+import 'screens/animatedtextScreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/nointernet.dart';
@@ -14,6 +16,7 @@ import 'screens/playaudio.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
 import 'screens/rating.dart';
+import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 import 'screens/slidetoastscreen.dart';
@@ -294,6 +297,25 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const FeedbackScreen()))),
+                    Button(
+                        text: 'Read More',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DemoApp()))),
+                    Button(
+                        text: 'Animated Text',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const AnimatedTextScreen()))),
+                    Button(
+                        text: 'CountDown',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CountDownPage()))),
                   ],
                 ),
 
