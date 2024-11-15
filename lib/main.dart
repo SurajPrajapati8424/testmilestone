@@ -26,6 +26,8 @@ import 'widgets/button.dart';
 import 'function/download.dart';
 import 'package:feedback/feedback.dart';
 
+import 'widgets/text.dart';
+
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,34 +84,133 @@ class HomePage extends StatelessWidget {
                     adSize: AdSize.fullBanner,
                   ),
                 ),
-                Container(
-                  child: ValueListenableBuilder(
-                    valueListenable: NativeAdSingleton.instance(
-                            'ca-app-pub-3940256099942544/2247696110')
-                        .nativeNotifier,
-                    builder: (context, isAdLoaded, child) {
-                      if (isAdLoaded) {
-                        return NativeAdSingleton.instance(
-                                'ca-app-pub-3940256099942544/2247696110')
-                            .displayAd(
-                          width: 400,
-                          height: 350,
-                          // for Medium
-                          //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
-                        );
-                      } else {
-                        return const CircularProgressIndicator(); // Loading indicator
-                      }
-                    },
-                  ),
+                ValueListenableBuilder(
+                  valueListenable: NativeAdSingleton.instance(
+                          'ca-app-pub-3940256099942544/2247696110')
+                      .nativeNotifier,
+                  builder: (context, isAdLoaded, child) {
+                    if (isAdLoaded) {
+                      return NativeAdSingleton.instance(
+                              'ca-app-pub-3940256099942544/2247696110')
+                          .displayAd(
+                        width: 400,
+                        height: 350,
+                        // for Medium
+                        //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
+                      );
+                    } else {
+                      return const CircularProgressIndicator(); // Loading indicator
+                    }
+                  },
                 ),
-                //
-                Wrap(
-                  children: [
-                    Button(
+                // FUNCTION
+                const TextWidget(text: 'FUNCTION', color: Colors.black),
+                const DividerWidget(thickness: 2),
+                const SizedBox(height: 5),
+                Wrap(children: [
+                  Button(
                       text: 'play',
                       onTap: () {
                         Navigator.pushNamed(context, '/playaudio');
+                      }),
+                  Button(
+                    text: 'download',
+                    onTap: () async {
+                      const urlOrString = 'suraj';
+                      String fileName = 'tech';
+                      String extensionName = 'csv';
+                      // const urlOrString =
+                      //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
+                      await downloadFile(urlOrString, fileName, extensionName);
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                        text: 'init Interstitial',
+                        onTap: () {
+                          // Interstitial
+                          InterstitialAdWidget().loadInterstitialAd(
+                              'ca-app-pub-3940256099942544/1033173712');
+                        },
+                      ),
+                      Button(
+                        text: 'show Interstitial',
+                        onTap: () {
+                          //  Show interstitial ad
+                          InterstitialAdWidget().showInterstitialAd();
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                        text: 'init Reward',
+                        onTap: () async {
+                          // Init Reward
+                          await RewardedAdService().loadRewardedAd(
+                              adUnitId:
+                                  'ca-app-pub-3940256099942544/5224354917');
+                        },
+                      ),
+                      Button(
+                        text: 'show Reward',
+                        onTap: () async {
+                          //  Show Reward ad
+                          await RewardedAdService().showRewardedAd(
+                              onUserEarnedReward: (val) {
+                            debugPrint('rewards is :$val');
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                        text: 'init Native',
+                        onTap: () {
+                          // Init Native
+                          NativeAdSingleton.instance(
+                                  'ca-app-pub-3940256099942544/2247696110')
+                              .loadAd(
+                                  templateType: TemplateType.medium,
+                                  onAdLoaded: () {},
+                                  onAdFailed: () {});
+                        },
+                      ),
+                      Button(
+                        text: 'dispose Native',
+                        onTap: () async {
+                          NativeAdSingleton.instance(
+                                  'ca-app-pub-3940256099942544/2247696110')
+                              .disposeAd();
+                        },
+                      ),
+                    ],
+                  ),
+                  Button(
+                    text: 'open in Chrome',
+                    onTap: () async {
+                      await Browser().open(url: 'https://flutter.dev');
+                    },
+                  ),
+                ]),
+                // PAGES
+                const TextWidget(text: 'PAGES', color: Colors.black),
+                const DividerWidget(thickness: 2),
+                const SizedBox(height: 5),
+                Wrap(
+                  children: [
+                    Button(
+                      text: 'open in App',
+                      onTap: () {
+                        // showQuestionOption(context, 'https://youtube.com');
+                        openInAppWebView(context, 'https://youtube.com');
                       },
                     ),
                     Button(
@@ -125,19 +226,7 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     Button(
-                      text: 'download',
-                      onTap: () async {
-                        const urlOrString = 'suraj';
-                        String fileName = 'tech';
-                        String extensionName = 'csv';
-                        // const urlOrString =
-                        //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
-                        await downloadFile(
-                            urlOrString, fileName, extensionName);
-                      },
-                    ),
-                    Button(
-                      text: 'No Internet',
+                      text: 'No Internet screen',
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -153,93 +242,6 @@ class HomePage extends StatelessWidget {
                           builder: (context) => const WordDoc(),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Button(
-                          text: 'init Interstitial',
-                          onTap: () {
-                            // Interstitial
-                            InterstitialAdWidget().loadInterstitialAd(
-                                'ca-app-pub-3940256099942544/1033173712');
-                          },
-                        ),
-                        Button(
-                          text: 'show Interstitial',
-                          onTap: () {
-                            //  Show interstitial ad
-                            InterstitialAdWidget().showInterstitialAd();
-                          },
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Button(
-                          text: 'open in Chrome',
-                          onTap: () async {
-                            await Browser().open(url: 'https://flutter.dev');
-                          },
-                        ),
-                        Button(
-                          text: 'open in App',
-                          onTap: () {
-                            // showQuestionOption(context, 'https://youtube.com');
-                            openInAppWebView(context, 'https://youtube.com');
-                          },
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Button(
-                          text: 'init Reward',
-                          onTap: () async {
-                            // Init Reward
-                            await RewardedAdService().loadRewardedAd(
-                                adUnitId:
-                                    'ca-app-pub-3940256099942544/5224354917');
-                          },
-                        ),
-                        Button(
-                          text: 'show Reward',
-                          onTap: () async {
-                            //  Show Reward ad
-                            await RewardedAdService().showRewardedAd(
-                                onUserEarnedReward: (val) {
-                              debugPrint('rewards is :$val');
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Button(
-                          text: 'init Native',
-                          onTap: () {
-                            // Init Native
-                            NativeAdSingleton.instance(
-                                    'ca-app-pub-3940256099942544/2247696110')
-                                .loadAd(
-                                    templateType: TemplateType.medium,
-                                    onAdLoaded: () {},
-                                    onAdFailed: () {});
-                          },
-                        ),
-                        Button(
-                          text: 'dispose Native',
-                          onTap: () async {
-                            NativeAdSingleton.instance(
-                                    'ca-app-pub-3940256099942544/2247696110')
-                                .disposeAd();
-                          },
-                        ),
-                      ],
                     ),
                     Button(
                         text: 'Sliding Toast',
