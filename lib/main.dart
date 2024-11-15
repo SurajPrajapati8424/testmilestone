@@ -20,6 +20,7 @@ import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 import 'screens/slidetoastscreen.dart';
+import 'screens/textgradientscreen.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -299,6 +300,10 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const FeedbackScreen()))),
+                    const TextWidget(
+                        text: '[ TEXT',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800),
                     Button(
                         text: 'Read More',
                         onTap: () => Navigator.push(
@@ -313,11 +318,22 @@ class HomePage extends StatelessWidget {
                                 builder: (context) =>
                                     const AnimatedTextScreen()))),
                     Button(
+                        text: 'Gradient Text',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TextGradientScreen()))),
+                    Button(
                         text: 'CountDown',
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const CountDownPage()))),
+                    const TextWidget(
+                        text: 'TEXT ]',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800),
                   ],
                 ),
 

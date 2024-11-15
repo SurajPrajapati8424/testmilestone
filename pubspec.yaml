@@ -57,6 +57,7 @@ dependencies:
   readmore: ^3.0.0
   safe_text: ^1.0.7
   smooth_corner: ^1.1.0
+  text_gradiate: ^1.0.1
   webview_flutter: ^4.9.0
   word_cloud: ^1.0.3
 
