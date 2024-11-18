@@ -21,6 +21,7 @@ import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/textgradientscreen.dart';
+import 'screens/textroundedscreen.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -330,6 +331,13 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const CountDownPage()))),
+                    Button(
+                        text: 'Rounded Text',
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TextRoundedScreen()))),
                     const TextWidget(
                         text: 'TEXT ]',
                         color: Colors.black,
