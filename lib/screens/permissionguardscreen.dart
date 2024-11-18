@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:permission_guard/permission_guard.dart';
 import '../widgets/button.dart';
@@ -8,6 +8,14 @@ class PermissionGuardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Permission.storage.requestGuarded(context).then((onValue) {
+    //   if (onValue != PermissionStatus.granted ||
+    //       onValue != PermissionStatus.limited) {
+
+    //   }
+    //   debugPrint('Photo Permission Granted');
+    // });
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -26,26 +34,30 @@ class PermissionGuardScreen extends StatelessWidget {
               permission: Permission.storage,
               child: const PermissionGrantedBody(),
               onPermissionStatusChanged: (status) {
-                if (status == PermissionStatus.denied) {
+                if (status != PermissionStatus.granted ||
+                    status != PermissionStatus.limited) {
                   debugPrint('PermissionStatus.denied');
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Permission Denied'),
-                        content: const Text(
-                            'Storage permission is required to proceed.'),
-                        actions: <Widget>[
-                          TextButton(
-                            child: const Text('OK'),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  Future.delayed(const Duration(seconds: 2), () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Storage Permission Denied'),
+                          content: const Text(
+                              'Storage permission is required to proceed'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('OPEN SETTINGS'),
+                              onPressed: () async {
+                                // Navigator.of(context).pop();
+                                await openAppSettings();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  });
                 }
                 debugPrint('Permission status changed: $status');
               },
