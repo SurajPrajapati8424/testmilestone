@@ -21,6 +21,7 @@ import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 import 'screens/slidetoastscreen.dart';
+import 'screens/staggeredscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/wordcloud.dart';
@@ -354,6 +355,17 @@ class HomePage extends StatelessWidget {
                         text: 'TEXT ]',
                         color: Colors.black,
                         fontWeight: FontWeight.w800),
+                    
+                    Button(
+                      text: 'Timepicker',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TimepickerScreen()),
+                        );
+                      },
+                    ),
                   ],
                 ),
 
