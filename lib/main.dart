@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'function/countdown.dart';
 import 'function/webview.dart';
@@ -24,6 +25,7 @@ import 'screens/slidetoastscreen.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
+import 'screens/timepickerscreen.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -56,6 +58,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       initialRoute: "/",
       routes: {
         "/": (context) => const HomePage(),
@@ -355,7 +362,16 @@ class HomePage extends StatelessWidget {
                         text: 'TEXT ]',
                         color: Colors.black,
                         fontWeight: FontWeight.w800),
-                    
+                    Button(
+                      text: 'Staggered Screen',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const StaggeredScreen()),
+                        );
+                      },
+                    ),
                     Button(
                       text: 'Timepicker',
                       onTap: () {
