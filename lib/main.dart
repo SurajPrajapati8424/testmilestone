@@ -12,6 +12,7 @@ import 'screens/animatedtextScreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/nointernet.dart';
+import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
@@ -199,6 +200,17 @@ class HomePage extends StatelessWidget {
                     text: 'open in Chrome',
                     onTap: () async {
                       await Browser().open(url: 'https://flutter.dev');
+                    },
+                  ),
+                  Button(
+                    text: 'Permission Guard',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const PermissionGuardScreen()),
+                      );
                     },
                   ),
                 ]),

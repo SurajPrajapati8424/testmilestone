@@ -53,6 +53,7 @@ dependencies:
   in_app_review: ^2.0.9
   modal_bottom_sheet: ^3.0.0
   path_provider: ^2.1.5
+  permission_guard: ^2.0.1
   permission_handler: ^11.3.1
   readmore: ^3.0.0
   rounded_background_text: ^0.5.0
@@ -61,7 +62,8 @@ dependencies:
   text_gradiate: ^1.0.1
   webview_flutter: ^4.9.0
   word_cloud: ^1.0.3
-
+module:
+  androidX: true
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
