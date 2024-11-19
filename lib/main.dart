@@ -12,6 +12,7 @@ import 'screens/addimagescreen.dart';
 import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
+import 'screens/deviceinfo.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/permissionguardscreen.dart';
@@ -401,6 +402,16 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const VersionCheckScreen()),
+                        );
+                      },
+                    ),
+                    Button(
+                      text: 'Device Info',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DeviceInfo()),
                         );
                       },
                     ),
