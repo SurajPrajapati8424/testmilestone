@@ -41,6 +41,8 @@ dependencies:
   flutter_blurhash: ^0.8.2
   flutter_email_sender: ^6.0.3
   flutter_inappwebview: ^6.1.5
+  flutter_localizations:
+    sdk: flutter
   flutter_quill: ^10.8.5
   flutter_quill_extensions: ^10.8.5
   flutter_screenutil: ^5.9.3
