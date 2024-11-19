@@ -27,6 +27,7 @@ import 'screens/staggeredscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
+import 'screens/versionCheck.dart';
 import 'screens/wordcloud.dart';
 import 'widgets/button.dart';
 
@@ -390,6 +391,16 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const AppUpdateScreen()),
+                        );
+                      },
+                    ),
+                    Button(
+                      text: 'Version Check',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VersionCheckScreen()),
                         );
                       },
                     ),
