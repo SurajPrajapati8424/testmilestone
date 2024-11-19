@@ -14,6 +14,7 @@ import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/feedbackscreen.dart';
+import 'screens/geoscreen.dart';
 import 'screens/nointernet.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
@@ -412,6 +413,16 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const DeviceInfo()),
+                        );
+                      },
+                    ),
+                    Button(
+                      text: 'Geo-Location',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LocationScreen()),
                         );
                       },
                     ),
