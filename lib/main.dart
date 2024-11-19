@@ -10,6 +10,7 @@ import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
 import 'screens/animatedtextScreen.dart';
+import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/nointernet.dart';
@@ -379,6 +380,16 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const TimepickerScreen()),
+                        );
+                      },
+                    ),
+                    Button(
+                      text: 'App Update',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AppUpdateScreen()),
                         );
                       },
                     ),
