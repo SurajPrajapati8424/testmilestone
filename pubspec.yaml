@@ -34,11 +34,11 @@ dependencies:
   app_version_update: ^5.0.3
   audioplayers: ^6.1.0
   blurhash_dart: ^1.2.1
-  # connectivity_plus: ^6.1.0
   connecteo: ^3.0.0
   cupertino_icons: ^1.0.8
   device_info_plus: ^10.1.2
   feedback: ^3.1.0
+  fl_chart: ^0.69.0
   flutter:
     sdk: flutter
   flutter_blurhash: ^0.8.2
@@ -51,6 +51,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_sliding_toast: ^1.4.2
   flutter_staggered_animations: ^1.1.1
+  flutter_svg: ^2.0.14
   geolocator: ^13.0.2
   google_fonts: ^6.2.1
   google_mobile_ads: ^5.2.0
