@@ -16,6 +16,7 @@ import 'screens/deviceinfo.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
 import 'screens/geoscreen.dart';
+import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
@@ -447,6 +448,14 @@ class HomePage extends StatelessWidget {
                         );
                       },
                     ),
+                    Button(
+                        text: 'No Screenshot',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const No_Screenshot()));
+                        }),
                   ],
                 ),
 

@@ -14,6 +14,7 @@ import gal
 import geolocator_apple
 import in_app_review
 import irondash_engine_context
+import no_screenshot
 import package_info_plus
 import path_provider_foundation
 import quill_native_bridge_macos
@@ -32,6 +33,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   GeolocatorPlugin.register(with: registry.registrar(forPlugin: "GeolocatorPlugin"))
   InAppReviewPlugin.register(with: registry.registrar(forPlugin: "InAppReviewPlugin"))
   IrondashEngineContextPlugin.register(with: registry.registrar(forPlugin: "IrondashEngineContextPlugin"))
+  NoScreenshotPlugin.register(with: registry.registrar(forPlugin: "NoScreenshotPlugin"))
   FPPPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FPPPackageInfoPlusPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   QuillNativeBridgePlugin.register(with: registry.registrar(forPlugin: "QuillNativeBridgePlugin"))
