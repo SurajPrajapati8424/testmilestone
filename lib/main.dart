@@ -13,6 +13,7 @@ import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/deviceinfo.dart';
+import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
 import 'screens/focusonit.dart';
@@ -475,6 +476,14 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const Focus_Widget_Example()));
+                        }),
+                    Button(
+                        text: 'Face_Camera',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Face_Camera()));
                         }),
                   ],
                 ),
