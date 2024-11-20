@@ -43,6 +43,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_blurhash: ^0.8.2
+  flutter_card_swiper: ^7.0.2
   flutter_email_sender: ^6.0.3
   flutter_inappwebview: ^6.1.5
   flutter_localizations:

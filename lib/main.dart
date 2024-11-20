@@ -13,6 +13,7 @@ import 'screens/addimagescreen.dart';
 import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
+import 'screens/cardswiper.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
@@ -546,6 +547,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const SecureAppScreen()));
+                        }),
+                    Button(
+                        text: 'Card Swiper',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CardSwiperExample()));
                         }),
                   ],
                 ),
