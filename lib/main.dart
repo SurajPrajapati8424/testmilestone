@@ -26,6 +26,7 @@ import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
+import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
 import 'screens/rating.dart';
@@ -583,6 +584,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ChicletExample()));
+                        }),
+                    Button(
+                        text: 'Pop-Scope',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PopScopeScreen()));
                         }),
                   ],
                 ),

@@ -196,9 +196,11 @@ void popToast({
 }) {
   InteractiveToast.pop(
     context,
-    title: const Text(
-      "Hi! I'm a popup toast 🐺. "
-      "I have fading and scaling effect.",
+    title: Text(
+      text == ''
+          ? "Hi! I'm a popup toast 🐺. "
+              "I have fading and scaling effect."
+          : text,
     ),
     leading: leadingWidget(),
     trailing: trailingWidget(),
