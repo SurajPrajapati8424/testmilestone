@@ -34,6 +34,7 @@ dependencies:
   app_version_update: ^5.0.3
   audioplayers: ^6.1.0
   blurhash_dart: ^1.2.1
+  chiclet: ^1.2.0
   connecteo: ^3.0.0
   cupertino_icons: ^1.0.8
   device_info_plus: ^10.1.2

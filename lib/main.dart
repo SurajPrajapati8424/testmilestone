@@ -14,6 +14,7 @@ import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/cardswiper.dart';
+import 'screens/chiclet_button.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
@@ -576,6 +577,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const TooltipExample()));
+                        }),
+                    Button(
+                        text: 'Chiclet',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ChicletExample()));
                         }),
                   ],
                 ),
