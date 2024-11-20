@@ -15,6 +15,7 @@ import 'screens/blurhashscreen.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
+import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
@@ -465,6 +466,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const Logger_Example()));
+                        }),
+                    Button(
+                        text: 'Focus on IT',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Focus_Widget_Example()));
                         }),
                   ],
                 ),
