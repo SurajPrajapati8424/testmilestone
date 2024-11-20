@@ -11,7 +11,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   geolocator_windows
   irondash_engine_context
   permission_handler_windows
-  secure_application
   super_native_extensions
   url_launcher_windows
 )

@@ -28,12 +28,11 @@ import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
-import 'screens/quick_settings.dart';
 import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
-import 'screens/secure_app.dart';
+// import 'screens/secure_app.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
@@ -48,8 +47,6 @@ import 'widgets/button.dart';
 import 'function/download.dart';
 import 'package:feedback/feedback.dart';
 import 'widgets/text.dart';
-import 'package:quick_settings/quick_settings.dart';
-// import 'package:quick_settings_example/alarm_manager.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -57,11 +54,11 @@ void main() async {
   MobileAds.instance.initialize();
   await FaceCamera.initialize();
 
-  QuickSettings.setup(
-    onTileClicked: onTileClicked,
-    onTileAdded: onTileAdded,
-    onTileRemoved: onTileRemoved,
-  );
+  // QuickSettings.setup(
+  //   onTileClicked: onTileClicked,
+  //   onTileAdded: onTileAdded,
+  //   onTileRemoved: onTileRemoved,
+  // );
 
   runApp(
     const ScreenUtilInit(
@@ -71,47 +68,47 @@ void main() async {
   );
 }
 
-@pragma("vm:entry-point")
-Tile onTileClicked(Tile tile) {
-  final oldStatus = tile.tileStatus;
-  if (oldStatus == TileStatus.active) {
-    // Tile has been clicked while it was active
-    // Set it to inactive and change its values accordingly
-    // Here: Disable the alarm
-    tile.label = "Alarm OFF";
-    tile.tileStatus = TileStatus.inactive;
-    tile.subtitle = "6:30 AM";
-    tile.drawableName = "alarm_off";
-    AlarmManager.instance.unscheduleAlarm();
-  } else {
-    // Tile has been clicked while it was inactive
-    // Set it to active and change its values accordingly
-    // Here: Enable the alarm
-    tile.label = "Alarm ON";
-    tile.tileStatus = TileStatus.active;
-    tile.subtitle = "6:30 AM";
-    tile.drawableName = "alarm_check";
-    AlarmManager.instance.scheduleAlarm();
-  }
-  // Return the updated tile, or null if you don't want to update the tile
-  return tile;
-}
+// @pragma("vm:entry-point")
+// Tile onTileClicked(Tile tile) {
+//   final oldStatus = tile.tileStatus;
+//   if (oldStatus == TileStatus.active) {
+//     // Tile has been clicked while it was active
+//     // Set it to inactive and change its values accordingly
+//     // Here: Disable the alarm
+//     tile.label = "Alarm OFF";
+//     tile.tileStatus = TileStatus.inactive;
+//     tile.subtitle = "6:30 AM";
+//     tile.drawableName = "alarm_off";
+//     AlarmManager.instance.unscheduleAlarm();
+//   } else {
+//     // Tile has been clicked while it was inactive
+//     // Set it to active and change its values accordingly
+//     // Here: Enable the alarm
+//     tile.label = "Alarm ON";
+//     tile.tileStatus = TileStatus.active;
+//     tile.subtitle = "6:30 AM";
+//     tile.drawableName = "alarm_check";
+//     AlarmManager.instance.scheduleAlarm();
+//   }
+//   // Return the updated tile, or null if you don't want to update the tile
+//   return tile;
+// }
 
-@pragma("vm:entry-point")
-Tile onTileAdded(Tile tile) {
-  tile.label = "Alarm ON";
-  tile.tileStatus = TileStatus.active;
-  tile.subtitle = "6:30 AM";
-  tile.drawableName = "alarm_check";
-  AlarmManager.instance.scheduleAlarm();
-  return tile;
-}
+// @pragma("vm:entry-point")
+// Tile onTileAdded(Tile tile) {
+//   tile.label = "Alarm ON";
+//   tile.tileStatus = TileStatus.active;
+//   tile.subtitle = "6:30 AM";
+//   tile.drawableName = "alarm_check";
+//   AlarmManager.instance.scheduleAlarm();
+//   return tile;
+// }
 
-@pragma("vm:entry-point")
-void onTileRemoved() {
-  print("Tile removed");
-  AlarmManager.instance.unscheduleAlarm();
-}
+// @pragma("vm:entry-point")
+// void onTileRemoved() {
+//   print("Tile removed");
+//   AlarmManager.instance.unscheduleAlarm();
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -542,15 +539,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const Face_Camera()));
                         }),
-                    Button(
-                        text: 'Secure App',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const SecureAppScreen()));
-                        }),
+                    // Button(
+                    //     text: 'Secure App',
+                    //     onTap: () {
+                    //       Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) =>
+                    //                   const SecureAppScreen()));
+                    //     }),
                     Button(
                         text: 'Card Swiper',
                         onTap: () {
