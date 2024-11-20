@@ -32,6 +32,7 @@ import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
 import 'screens/versionCheck.dart';
 import 'screens/wordcloud.dart';
+import 'screens/wordcloud2.dart';
 import 'widgets/button.dart';
 
 import 'function/download.dart';
@@ -250,6 +251,15 @@ class HomePage extends StatelessWidget {
                       text: 'wordcloud',
                       onTap: () {
                         Navigator.pushNamed(context, '/word');
+                      },
+                    ),
+                    Button(
+                      text: 'Word_Cloud 2',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Word_Cloud()));
                       },
                     ),
                     Button(
