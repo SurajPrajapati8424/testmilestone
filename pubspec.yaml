@@ -37,6 +37,7 @@ dependencies:
   connecteo: ^3.0.0
   cupertino_icons: ^1.0.8
   device_info_plus: ^10.1.2
+  el_tooltip: ^2.2.1
   face_camera: ^0.1.4
   feedback: ^3.1.0
   fl_chart: ^0.69.0

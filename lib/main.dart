@@ -39,6 +39,7 @@ import 'screens/starsviewscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
+import 'screens/tooltipscreen.dart';
 import 'screens/versionCheck.dart';
 import 'screens/wordcloud.dart';
 import 'screens/wordcloud2.dart';
@@ -566,6 +567,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const StarsViewExample()));
+                        }),
+                    Button(
+                        text: 'Tooltip',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TooltipExample()));
                         }),
                   ],
                 ),
