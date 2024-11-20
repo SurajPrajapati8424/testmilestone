@@ -16,6 +16,7 @@ import 'screens/deviceinfo.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
 import 'screens/geoscreen.dart';
+import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
 import 'screens/permissionguardscreen.dart';
@@ -455,6 +456,15 @@ class HomePage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const No_Screenshot()));
+                        }),
+                    Button(
+                        text: 'Logger',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Logger_Example()));
                         }),
                   ],
                 ),

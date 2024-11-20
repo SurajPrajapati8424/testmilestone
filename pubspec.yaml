@@ -59,6 +59,7 @@ dependencies:
   image: ^4.3.0
   image_picker: ^1.1.2
   in_app_review: ^2.0.9
+  logger: ^2.5.0
   modal_bottom_sheet: ^3.0.0
   no_screenshot: ^0.3.1
   package_info_plus: ^8.1.1
