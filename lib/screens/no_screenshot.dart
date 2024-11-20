@@ -1,3 +1,4 @@
+// ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:no_screenshot/no_screenshot.dart';
 import 'package:no_screenshot/screenshot_snapshot.dart';

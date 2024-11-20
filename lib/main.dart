@@ -49,6 +49,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   await FaceCamera.initialize();
+
+  QuickSettings.setup(
+    onTileClicked: (),
+    onTileAdded: onTileAdded,
+    onTileRemoved: onTileRemoved,
+  );
+
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
@@ -486,15 +493,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const Face_Camera()));
                         }),
-                    // Button(
-                    //     text: 'Secure App',
-                    //     onTap: () {
-                    //       Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //               builder: (context) =>
-                    //                   const SecureAppScreen()));
-                    //     }),
+                    Button(
+                        text: 'Secure App',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SecureAppScreen()));
+                        }),
                   ],
                 ),
 
