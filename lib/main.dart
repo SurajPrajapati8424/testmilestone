@@ -35,6 +35,7 @@ import 'screens/safetextscreen.dart';
 import 'screens/secure_app.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/staggeredscreen.dart';
+import 'screens/starsviewscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
@@ -556,6 +557,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const CardSwiperExample()));
+                        }),
+                    Button(
+                        text: 'StarsView',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const StarsViewExample()));
                         }),
                   ],
                 ),

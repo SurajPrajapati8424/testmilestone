@@ -75,6 +75,7 @@ dependencies:
   safe_text: ^1.0.7
   secure_application: ^4.0.1
   smooth_corner: ^1.1.0
+  starsview: ^0.0.2
   text_gradiate: ^1.0.1
   time_picker_spinner_pop_up: ^2.0.0
   webview_flutter: ^4.9.0

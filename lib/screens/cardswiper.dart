@@ -37,7 +37,7 @@ class _ExamplePageState extends State<CardSwiperExample> {
                 onSwipe: _onSwipe,
                 onUndo: _onUndo,
                 numberOfCardsDisplayed: 3,
-                backCardOffset: const Offset(40, 40),
+                backCardOffset: const Offset(0, 40), // <--
                 padding: const EdgeInsets.all(24.0),
                 cardBuilder: (
                   context,
