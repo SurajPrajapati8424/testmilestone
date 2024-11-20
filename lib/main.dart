@@ -1,9 +1,10 @@
+// ignore_for_file: unused_import
+import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'function/countdown.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
@@ -29,6 +30,7 @@ import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
+import 'screens/secure_app.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/textgradientscreen.dart';
@@ -38,16 +40,15 @@ import 'screens/versionCheck.dart';
 import 'screens/wordcloud.dart';
 import 'screens/wordcloud2.dart';
 import 'widgets/button.dart';
-
 import 'function/download.dart';
 import 'package:feedback/feedback.dart';
-
 import 'widgets/text.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  await FaceCamera.initialize();
   runApp(
     const ScreenUtilInit(
       designSize: Size(360, 752),
@@ -485,6 +486,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const Face_Camera()));
                         }),
+                    // Button(
+                    //     text: 'Secure App',
+                    //     onTap: () {
+                    //       Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) =>
+                    //                   const SecureAppScreen()));
+                    //     }),
                   ],
                 ),
 
