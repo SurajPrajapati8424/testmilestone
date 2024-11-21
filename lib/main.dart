@@ -35,6 +35,7 @@ import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
 import 'screens/slidetoastscreen.dart';
+import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
 import 'screens/textgradientscreen.dart';
@@ -593,6 +594,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const PopScopeScreen()));
+                        }),
+                    Button(
+                        text: 'BasicScrollableSheetExample',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const BasicScrollableSheetExample()));
                         }),
                   ],
                 ),
