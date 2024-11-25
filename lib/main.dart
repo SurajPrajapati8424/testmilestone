@@ -37,6 +37,7 @@ import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
+import 'screens/scrolltotop.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
@@ -671,6 +672,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const TinyAvatarExample()));
+                        }),
+                    Button(
+                        text: 'Scroll-to-top',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ScrolltotopExample()));
                         }),
                   ],
                 ),
