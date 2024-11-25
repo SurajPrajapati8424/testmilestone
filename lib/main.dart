@@ -29,6 +29,7 @@ import 'screens/playaudio.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
+import 'screens/quiz_setting.dart';
 import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
@@ -603,6 +604,14 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const BasicScrollableSheetExample()));
+                        }),
+                    Button(
+                        text: 'Quiz Settings',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Quiz_Settings()));
                         }),
                   ],
                 ),
