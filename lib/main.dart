@@ -12,6 +12,7 @@ import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
 import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
+import 'screens/avatarscreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
@@ -651,6 +652,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       StringcontainsScreen()));
+                        }),
+                    Button(
+                        text: 'Avatar',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AvatarStackExample()));
                         }),
                   ],
                 ),
