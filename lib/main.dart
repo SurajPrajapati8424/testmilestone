@@ -19,6 +19,7 @@ import 'screens/deviceinfo.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
+import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
 import 'screens/logger.dart';
@@ -622,6 +623,24 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const WidgetTextAnimator()));
+                        }),
+                    Button(
+                        text: 'Flutter Animation',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const WidgetTextAnimator()));
+                        }),
+                    Button(
+                        text: 'Flutter Animation',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FlutterAnimationScreen()));
                         }),
                   ],
                 ),
