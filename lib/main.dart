@@ -40,6 +40,7 @@ import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
+import 'screens/string_contains.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
@@ -641,6 +642,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const FlutterAnimationScreen()));
+                        }),
+                    Button(
+                        text: 'String Contains',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      StringcontainsScreen()));
                         }),
                   ],
                 ),

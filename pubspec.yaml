@@ -80,6 +80,7 @@ dependencies:
   smooth_corner: ^1.1.0
   smooth_sheets: ^0.10.2
   starsview: ^0.0.2
+  string_contains: ^2.4.0
   text_gradiate: ^1.0.1
   time_picker_spinner_pop_up: ^2.0.0
   webview_flutter: ^4.9.0
