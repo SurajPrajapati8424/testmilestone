@@ -1466,6 +1466,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  tiny_avatar:
+    dependency: "direct main"
+    description:
+      name: tiny_avatar
+      sha256: fe1150060cca16e76cc83fd5e5911ba865c778a2cfc5264665663c2b21181b9a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   typed_data:
     dependency: transitive
     description:

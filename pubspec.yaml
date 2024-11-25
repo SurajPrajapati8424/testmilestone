@@ -84,6 +84,7 @@ dependencies:
   string_contains: ^2.4.0
   text_gradiate: ^1.0.1
   time_picker_spinner_pop_up: ^2.0.0
+  tiny_avatar: ^0.0.3
   webview_flutter: ^4.9.0
   widget_and_text_animator: ^1.1.5
   word_cloud: ^1.0.3
