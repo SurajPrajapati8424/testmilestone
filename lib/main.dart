@@ -10,6 +10,7 @@ import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
+import 'screens/animatedgradient.dart';
 import 'screens/animatedtextScreen.dart';
 import 'screens/appUpdate.dart';
 import 'screens/avatarscreen.dart';
@@ -515,14 +516,6 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                     Button(
-                        text: 'No Screenshot',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const No_Screenshot()));
-                        }),
-                    Button(
                         text: 'Logger',
                         onTap: () {
                           Navigator.push(
@@ -682,6 +675,27 @@ class HomePage extends StatelessWidget {
                                   builder: (context) =>
                                       const ScrolltotopExample()));
                         }),
+                    Button(
+                        text: 'Animated Gradient',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AnimatedGradientExample()));
+                        }),
+                    const TextWidget(
+                        text: 'SCREENSHOT [', fontWeight: FontWeight.bold),
+                    Button(
+                        text: 'No Screenshot',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const No_Screenshot()));
+                        }),
+
+                    const TextWidget(text: ']', fontWeight: FontWeight.bold),
                   ],
                 ),
 
