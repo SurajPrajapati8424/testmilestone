@@ -29,6 +29,7 @@ import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
+import 'screens/pdfreader.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
 import 'screens/popscopescreen.dart';
@@ -725,6 +726,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const AutolistAnimatedExample()));
+                        }),
+                    Button(
+                        text: 'PDFreader',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PDFreaderExample()));
                         }),
                   ],
                 ),

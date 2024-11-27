@@ -45,6 +45,7 @@ dependencies:
   el_tooltip: ^2.2.1
   face_camera: ^0.1.4
   feedback: ^3.1.0
+  file_picker: ^8.1.4
   fl_chart: ^0.69.0
   flutter:
     sdk: flutter
@@ -78,6 +79,7 @@ dependencies:
   path_provider: ^2.1.5
   permission_guard: ^2.0.1
   permission_handler: ^11.3.1
+  read_pdf_text: ^0.2.3
   readmore: ^3.0.0
   rounded_background_text: ^0.5.0
   safe_text: ^1.0.7
