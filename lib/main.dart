@@ -38,6 +38,7 @@ import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
+import 'screens/screenshotwidgetonly.dart';
 import 'screens/scrolltotop.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
@@ -693,6 +694,15 @@ class HomePage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const No_Screenshot()));
+                        }),
+                    Button(
+                        text: 'Screenshot widget',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ScreenshotWidgetOnly()));
                         }),
 
                     const TextWidget(text: ']', fontWeight: FontWeight.bold),
