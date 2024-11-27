@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'function/countdown.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
+import 'screens/activityrecognition.dart';
 import 'screens/adblockscreen.dart';
 import 'screens/addimagescreen.dart';
 import 'screens/animatedgradient.dart';
@@ -706,6 +707,15 @@ class HomePage extends StatelessWidget {
                         }),
 
                     const TextWidget(text: ']', fontWeight: FontWeight.bold),
+                    Button(
+                        text: 'Activity Recognition',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ActivityrecognitionExample()));
+                        }),
                   ],
                 ),
 
