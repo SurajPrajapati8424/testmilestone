@@ -25,6 +25,7 @@ import 'screens/fl_chart.dart';
 import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
+import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
@@ -715,6 +716,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ActivityrecognitionExample()));
+                        }),
+                    Button(
+                        text: 'Animated Search List',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AutolistAnimatedExample()));
                         }),
                   ],
                 ),
