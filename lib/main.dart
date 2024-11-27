@@ -48,6 +48,7 @@ import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
 import 'screens/string_contains.dart';
+import 'screens/tabswitcherscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
@@ -735,6 +736,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const PDFreaderExample()));
+                        }),
+                    Button(
+                        text: 'Tab Switcher',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TabswitcherExample()));
                         }),
                   ],
                 ),

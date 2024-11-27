@@ -1389,6 +1389,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  scroll_shadow_container:
+    dependency: transitive
+    description:
+      name: scroll_shadow_container
+      sha256: aec31b3da0b4ee3248eabd6d83e1ca4ad58ba3e01499a14061f44207f15ca37d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1+2"
   scroll_to_top:
     dependency: "direct main"
     description:
@@ -1514,6 +1522,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0+3"
+  tab_switcher:
+    dependency: "direct main"
+    description:
+      name: tab_switcher
+      sha256: "528bcff0bbc4fcea9ef237f2c4a598e208003329c7d2e07fb3904547c005b83d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   term_glyph:
     dependency: transitive
     description:
