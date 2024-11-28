@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:testmilestone/screens/csvpickerscreen.dart';
 import 'function/countdown.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
@@ -45,6 +46,7 @@ import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
 import 'screens/screenshotwidgetonly.dart';
 import 'screens/scrolltotop.dart';
+import 'screens/showcasescreen.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
@@ -165,616 +167,656 @@ class HomePage extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                // test ads
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: ResponsiveBanner(
-                    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-                    adSize: AdSize.fullBanner,
-                  ),
-                ),
-                ValueListenableBuilder(
-                  valueListenable: NativeAdSingleton.instance(
-                          'ca-app-pub-3940256099942544/2247696110')
-                      .nativeNotifier,
-                  builder: (context, isAdLoaded, child) {
-                    if (isAdLoaded) {
-                      return NativeAdSingleton.instance(
-                              'ca-app-pub-3940256099942544/2247696110')
-                          .displayAd(
-                        width: 400,
-                        height: 350,
-                        // for Medium
-                        //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
-                      );
-                    } else {
-                      return const CircularProgressIndicator(); // Loading indicator
-                    }
-                  },
-                ),
-                // FUNCTION
-                const TextWidget(text: 'FUNCTION', color: Colors.black),
-                const DividerWidget(thickness: 2),
-                const SizedBox(height: 5),
-                Wrap(children: [
-                  Button(
-                      text: 'play',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/playaudio');
-                      }),
-                  Button(
-                    text: 'download',
-                    onTap: () async {
-                      const urlOrString = 'suraj';
-                      String fileName = 'tech';
-                      String extensionName = 'csv';
-                      // const urlOrString =
-                      //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
-                      await downloadFile(urlOrString, fileName, extensionName);
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Button(
-                        text: 'init Interstitial',
-                        onTap: () {
-                          // Interstitial
-                          InterstitialAdWidget().loadInterstitialAd(
-                              'ca-app-pub-3940256099942544/1033173712');
-                        },
-                      ),
-                      Button(
-                        text: 'show Interstitial',
-                        onTap: () {
-                          //  Show interstitial ad
-                          InterstitialAdWidget().showInterstitialAd();
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Button(
-                        text: 'init Reward',
-                        onTap: () async {
-                          // Init Reward
-                          await RewardedAdService().loadRewardedAd(
-                              adUnitId:
-                                  'ca-app-pub-3940256099942544/5224354917');
-                        },
-                      ),
-                      Button(
-                        text: 'show Reward',
-                        onTap: () async {
-                          //  Show Reward ad
-                          await RewardedAdService().showRewardedAd(
-                              onUserEarnedReward: (val) {
-                            debugPrint('rewards is :$val');
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Button(
-                        text: 'init Native',
-                        onTap: () {
-                          // Init Native
-                          NativeAdSingleton.instance(
-                                  'ca-app-pub-3940256099942544/2247696110')
-                              .loadAd(
-                                  templateType: TemplateType.medium,
-                                  onAdLoaded: () {},
-                                  onAdFailed: () {});
-                        },
-                      ),
-                      Button(
-                        text: 'dispose Native',
-                        onTap: () async {
-                          NativeAdSingleton.instance(
-                                  'ca-app-pub-3940256099942544/2247696110')
-                              .disposeAd();
-                        },
-                      ),
-                    ],
-                  ),
-                  Button(
-                    text: 'open in Chrome',
-                    onTap: () async {
-                      await Browser().open(url: 'https://flutter.dev');
-                    },
-                  ),
-                  Button(
-                    text: 'Permission Guard',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const PermissionGuardScreen()),
-                      );
-                    },
-                  ),
-                ]),
-                // PAGES
-                const TextWidget(text: 'PAGES', color: Colors.black),
-                const DividerWidget(thickness: 2),
-                const SizedBox(height: 5),
-                Wrap(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                child: Column(
                   children: [
-                    Button(
-                      text: 'open in App',
-                      onTap: () {
-                        // showQuestionOption(context, 'https://youtube.com');
-                        openInAppWebView(context, 'https://youtube.com');
-                      },
-                    ),
-                    Button(
-                      text: 'rate',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/rating');
-                      },
-                    ),
-                    Button(
-                      text: 'wordcloud',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/word');
-                      },
-                    ),
-                    Button(
-                      text: 'Word_Cloud 2',
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Word_Cloud()));
-                      },
-                    ),
-                    Button(
-                      text: 'No Internet screen',
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const NoInternetScreen(),
-                        ),
+                    // test ads
+                    const Align(
+                      alignment: Alignment.topCenter,
+                      child: ResponsiveBanner(
+                        adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+                        adSize: AdSize.fullBanner,
                       ),
                     ),
-                    Button(
-                      text: 'Word Doc',
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const WordDoc(),
-                        ),
+                    ValueListenableBuilder(
+                      valueListenable: NativeAdSingleton.instance(
+                              'ca-app-pub-3940256099942544/2247696110')
+                          .nativeNotifier,
+                      builder: (context, isAdLoaded, child) {
+                        if (isAdLoaded) {
+                          return NativeAdSingleton.instance(
+                                  'ca-app-pub-3940256099942544/2247696110')
+                              .displayAd(
+                            width: 400,
+                            height: 350,
+                            // for Medium
+                            //minWidth: 320,minHeight: 320,maxWidth: 400,maxHeight: 400
+                          );
+                        } else {
+                          return const CircularProgressIndicator(); // Loading indicator
+                        }
+                      },
+                    ),
+                    // FUNCTION
+                    const TextWidget(text: 'FUNCTION', color: Colors.black),
+                    const DividerWidget(thickness: 2),
+                    const SizedBox(height: 5),
+                    Wrap(children: [
+                      Button(
+                          text: 'play',
+                          onTap: () {
+                            Navigator.pushNamed(context, '/playaudio');
+                          }),
+                      Button(
+                        text: 'download',
+                        onTap: () async {
+                          const urlOrString = 'suraj';
+                          String fileName = 'tech';
+                          String extensionName = 'csv';
+                          // const urlOrString =
+                          //     'https://wsform.com/wp-content/uploads/2021/04/day.csv';
+                          await downloadFile(
+                              urlOrString, fileName, extensionName);
+                        },
                       ),
-                    ),
-                    Button(
-                        text: 'Sliding Toast',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SlidingToast()))),
-                    Button(
-                        text: 'Safe Text',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SafetextScreen()))),
-                    Button(
-                        text: 'Ad Block',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AdblockScreen()))),
-                    Button(
-                        text: 'Blur Hash',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const BlurHashApp()))),
-                    Button(
-                        text: 'Premium Content',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const PopupPremiumContent()))),
-                    Button(
-                        text: 'Achievement And Logout',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const AchievementAndLogout()))),
-                    Button(
-                        text: 'Profile',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProfilePage()))),
-                    Button(
-                        text: 'Add Image',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AddImageScreen()))),
-                    Button(
-                        text: 'Feedback',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const FeedbackScreen()))),
-                    const TextWidget(
-                        text: '[ TEXT',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w800),
-                    Button(
-                        text: 'Read More',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const DemoApp()))),
-                    Button(
-                        text: 'Animated Text',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const AnimatedTextScreen()))),
-                    Button(
-                        text: 'Gradient Text',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const TextGradientScreen()))),
-                    Button(
-                        text: 'CountDown',
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CountDownPage()))),
-                    Button(
-                        text: 'Rounded Text',
-                        onTap: () => Navigator.push(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Button(
+                            text: 'init Interstitial',
+                            onTap: () {
+                              // Interstitial
+                              InterstitialAdWidget().loadInterstitialAd(
+                                  'ca-app-pub-3940256099942544/1033173712');
+                            },
+                          ),
+                          Button(
+                            text: 'show Interstitial',
+                            onTap: () {
+                              //  Show interstitial ad
+                              InterstitialAdWidget().showInterstitialAd();
+                            },
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Button(
+                            text: 'init Reward',
+                            onTap: () async {
+                              // Init Reward
+                              await RewardedAdService().loadRewardedAd(
+                                  adUnitId:
+                                      'ca-app-pub-3940256099942544/5224354917');
+                            },
+                          ),
+                          Button(
+                            text: 'show Reward',
+                            onTap: () async {
+                              //  Show Reward ad
+                              await RewardedAdService().showRewardedAd(
+                                  onUserEarnedReward: (val) {
+                                debugPrint('rewards is :$val');
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Button(
+                            text: 'init Native',
+                            onTap: () {
+                              // Init Native
+                              NativeAdSingleton.instance(
+                                      'ca-app-pub-3940256099942544/2247696110')
+                                  .loadAd(
+                                      templateType: TemplateType.medium,
+                                      onAdLoaded: () {},
+                                      onAdFailed: () {});
+                            },
+                          ),
+                          Button(
+                            text: 'dispose Native',
+                            onTap: () async {
+                              NativeAdSingleton.instance(
+                                      'ca-app-pub-3940256099942544/2247696110')
+                                  .disposeAd();
+                            },
+                          ),
+                        ],
+                      ),
+                      Button(
+                        text: 'open in Chrome',
+                        onTap: () async {
+                          await Browser().open(url: 'https://flutter.dev');
+                        },
+                      ),
+                      Button(
+                        text: 'Permission Guard',
+                        onTap: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const TextRoundedScreen()))),
-                    const TextWidget(
-                        text: 'TEXT ]',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w800),
-                    Button(
-                      text: 'Staggered Screen',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const StaggeredScreen()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'Timepicker',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const TimepickerScreen()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'App Update',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AppUpdateScreen()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'Version Check',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const VersionCheckScreen()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'Device Info',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DeviceInfo()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'Geo-Location',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LocationScreen()),
-                        );
-                      },
-                    ),
-                    Button(
-                      text: 'Fl_Chart',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FlChart()),
-                        );
-                      },
-                    ),
-                    Button(
-                        text: 'Logger',
-                        onTap: () {
-                          Navigator.push(
+                                    const PermissionGuardScreen()),
+                          );
+                        },
+                      ),
+                    ]),
+                    // PAGES
+                    const TextWidget(text: 'PAGES', color: Colors.black),
+                    const DividerWidget(thickness: 2),
+                    const SizedBox(height: 5),
+                    Wrap(
+                      children: [
+                        Button(
+                          text: 'open in App',
+                          onTap: () {
+                            // showQuestionOption(context, 'https://youtube.com');
+                            openInAppWebView(context, 'https://youtube.com');
+                          },
+                        ),
+                        Button(
+                          text: 'rate',
+                          onTap: () {
+                            Navigator.pushNamed(context, '/rating');
+                          },
+                        ),
+                        Button(
+                          text: 'wordcloud',
+                          onTap: () {
+                            Navigator.pushNamed(context, '/word');
+                          },
+                        ),
+                        Button(
+                          text: 'Word_Cloud 2',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Word_Cloud()));
+                          },
+                        ),
+                        Button(
+                          text: 'No Internet screen',
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NoInternetScreen(),
+                            ),
+                          ),
+                        ),
+                        Button(
+                          text: 'Word Doc',
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const WordDoc(),
+                            ),
+                          ),
+                        ),
+                        Button(
+                            text: 'Sliding Toast',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SlidingToast()))),
+                        Button(
+                            text: 'Safe Text',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SafetextScreen()))),
+                        Button(
+                            text: 'Ad Block',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AdblockScreen()))),
+                        Button(
+                            text: 'Blur Hash',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BlurHashApp()))),
+                        Button(
+                            text: 'Premium Content',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PopupPremiumContent()))),
+                        Button(
+                            text: 'Achievement And Logout',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AchievementAndLogout()))),
+                        Button(
+                            text: 'Profile',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ProfilePage()))),
+                        Button(
+                            text: 'Add Image',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AddImageScreen()))),
+                        Button(
+                            text: 'Feedback',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const FeedbackScreen()))),
+                        const TextWidget(
+                            text: '[ TEXT',
+                            color: Colors.black,
+                            fontWeight: FontWeight.w800),
+                        Button(
+                            text: 'Read More',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DemoApp()))),
+                        Button(
+                            text: 'Animated Text',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AnimatedTextScreen()))),
+                        Button(
+                            text: 'Gradient Text',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TextGradientScreen()))),
+                        Button(
+                            text: 'CountDown',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CountDownPage()))),
+                        Button(
+                            text: 'Rounded Text',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TextRoundedScreen()))),
+                        const TextWidget(
+                            text: 'TEXT ]',
+                            color: Colors.black,
+                            fontWeight: FontWeight.w800),
+                        Button(
+                          text: 'Staggered Screen',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const Logger_Example()));
-                        }),
-                    Button(
-                        text: 'Focus on IT',
-                        onTap: () {
-                          Navigator.push(
+                                      const StaggeredScreen()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Timepicker',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const Focus_Widget_Example()));
-                        }),
-                    Button(
-                        text: 'Face_Camera',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Face_Camera()));
-                        }),
-                    // Button(
-                    //     text: 'Secure App',
-                    //     onTap: () {
-                    //       Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //               builder: (context) =>
-                    //                   const SecureAppScreen()));
-                    //     }),
-                    Button(
-                        text: 'Card Swiper',
-                        onTap: () {
-                          Navigator.push(
+                                      const TimepickerScreen()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'App Update',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const CardSwiperExample()));
-                        }),
-                    Button(
-                        text: 'StarsView',
-                        onTap: () {
-                          Navigator.push(
+                                      const AppUpdateScreen()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Version Check',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const StarsViewExample()));
-                        }),
-                    Button(
-                        text: 'Tooltip',
-                        onTap: () {
-                          Navigator.push(
+                                      const VersionCheckScreen()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Device Info',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TooltipExample()));
-                        }),
-                    Button(
-                        text: 'Chiclet',
-                        onTap: () {
-                          Navigator.push(
+                                  builder: (context) => const DeviceInfo()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Geo-Location',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ChicletExample()));
-                        }),
-                    Button(
-                        text: 'Pop-Scope',
-                        onTap: () {
-                          Navigator.push(
+                                  builder: (context) => const LocationScreen()),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Fl_Chart',
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PopScopeScreen()));
-                        }),
-                    Button(
-                        text: 'BasicScrollableSheetExample',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const BasicScrollableSheetExample()));
-                        }),
-                    Button(
-                        text: 'Quiz Settings',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Quiz_Settings()));
-                        }),
-                    Button(
-                        text: 'Widget-Text Animator',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const WidgetTextAnimator()));
-                        }),
-                    Button(
-                        text: 'Flutter Animation',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const WidgetTextAnimator()));
-                        }),
-                    Button(
-                        text: 'Flutter Animation',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const FlutterAnimationScreen()));
-                        }),
-                    Button(
-                        text: 'String Contains',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      StringcontainsScreen()));
-                        }),
-                    Button(
-                        text: 'Avatar',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AvatarStackExample()));
-                        }),
-                    Button(
-                        text: 'Tiny Avatar',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TinyAvatarExample()));
-                        }),
-                    Button(
-                        text: 'Scroll-to-top',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ScrolltotopExample()));
-                        }),
-                    Button(
-                        text: 'Animated Gradient',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AnimatedGradientExample()));
-                        }),
-                    const TextWidget(
-                        text: 'SCREENSHOT [', fontWeight: FontWeight.bold),
-                    Button(
-                        text: 'No Screenshot',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const No_Screenshot()));
-                        }),
-                    Button(
-                        text: 'Screenshot widget',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ScreenshotWidgetOnly()));
-                        }),
+                                  builder: (context) => const FlChart()),
+                            );
+                          },
+                        ),
+                        Button(
+                            text: 'Logger',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Logger_Example()));
+                            }),
+                        Button(
+                            text: 'Focus on IT',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Focus_Widget_Example()));
+                            }),
+                        Button(
+                            text: 'Face_Camera',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Face_Camera()));
+                            }),
+                        // Button(
+                        //     text: 'Secure App',
+                        //     onTap: () {
+                        //       Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) =>
+                        //                   const SecureAppScreen()));
+                        //     }),
+                        Button(
+                            text: 'Card Swiper',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CardSwiperExample()));
+                            }),
+                        Button(
+                            text: 'StarsView',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const StarsViewExample()));
+                            }),
+                        Button(
+                            text: 'Tooltip',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TooltipExample()));
+                            }),
+                        Button(
+                            text: 'Chiclet',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChicletExample()));
+                            }),
+                        Button(
+                            text: 'Pop-Scope',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PopScopeScreen()));
+                            }),
+                        Button(
+                            text: 'BasicScrollableSheetExample',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BasicScrollableSheetExample()));
+                            }),
+                        Button(
+                            text: 'Quiz Settings',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Quiz_Settings()));
+                            }),
+                        Button(
+                            text: 'Widget-Text Animator',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const WidgetTextAnimator()));
+                            }),
+                        Button(
+                            text: 'Flutter Animation',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const WidgetTextAnimator()));
+                            }),
+                        Button(
+                            text: 'Flutter Animation',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FlutterAnimationScreen()));
+                            }),
+                        Button(
+                            text: 'String Contains',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          StringcontainsScreen()));
+                            }),
+                        Button(
+                            text: 'Avatar',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AvatarStackExample()));
+                            }),
+                        Button(
+                            text: 'Tiny Avatar',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TinyAvatarExample()));
+                            }),
+                        Button(
+                            text: 'Scroll-to-top',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ScrolltotopExample()));
+                            }),
+                        Button(
+                            text: 'Animated Gradient',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AnimatedGradientExample()));
+                            }),
+                        const TextWidget(
+                            text: 'SCREENSHOT [', fontWeight: FontWeight.bold),
+                        Button(
+                            text: 'No Screenshot',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const No_Screenshot()));
+                            }),
+                        Button(
+                            text: 'Screenshot widget',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ScreenshotWidgetOnly()));
+                            }),
 
-                    const TextWidget(text: ']', fontWeight: FontWeight.bold),
-                    Button(
-                        text: 'Activity Recognition',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ActivityrecognitionExample()));
-                        }),
-                    Button(
-                        text: 'Animated Search List',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AutolistAnimatedExample()));
-                        }),
-                    Button(
-                        text: 'PDFreader',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PDFreaderExample()));
-                        }),
-                    Button(
-                        text: 'Tab Switcher',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TabswitcherExample()));
-                        }),
-                    Button(
-                        text: 'Parallax Card',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ParallaxcardExample()));
-                        }),
-                    Button(
-                        text: 'Link Prev',
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const LinkpeakExample()));
-                        }),
+                        const TextWidget(
+                            text: ']', fontWeight: FontWeight.bold),
+                        Button(
+                            text: 'Activity Recognition',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ActivityrecognitionExample()));
+                            }),
+                        Button(
+                            text: 'Animated Search List',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AutolistAnimatedExample()));
+                            }),
+                        Button(
+                            text: 'PDFreader',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PDFreaderExample()));
+                            }),
+                        Button(
+                            text: 'Tab Switcher',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TabswitcherExample()));
+                            }),
+                        Button(
+                            text: 'Parallax Card',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ParallaxcardExample()));
+                            }),
+                        Button(
+                            text: 'Link Prev',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LinkpeakExample()));
+                            }),
+                        Button(
+                            text: 'csv',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CsvpickerExample()));
+                            }),
+                        Button(
+                            text: 'Show Case',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ShowcaseExample()));
+                            }),
+                      ],
+                    ),
+
+                    // // test
+                    // NativeBasicAd(
+                    //   adUnitId: 'ca-app-pub-3940256099942544/2247696110',
+                    //   templateType: TemplateType.medium,
+                    // ),
                   ],
                 ),
-
-                // // test
-                // NativeBasicAd(
-                //   adUnitId: 'ca-app-pub-3940256099942544/2247696110',
-                //   templateType: TemplateType.medium,
-                // ),
-              ],
+              ),
             ),
           ),
         );

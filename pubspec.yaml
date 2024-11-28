@@ -41,6 +41,7 @@ dependencies:
   blurhash_dart: ^1.2.1
   chiclet: ^1.2.0
   connecteo: ^3.0.0
+  csv: ^6.0.0
   cupertino_icons: ^1.0.8
   device_info_plus: ^10.1.2
   el_tooltip: ^2.2.1
@@ -88,6 +89,7 @@ dependencies:
   safe_text: ^1.0.7
   screenshot: ^3.0.0
   scroll_to_top: ^0.0.5
+  showcaseview: ^3.0.0
   smooth_corner: ^1.1.0
   smooth_sheets: ^0.10.2
   starsview: ^0.0.2
