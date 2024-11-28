@@ -29,6 +29,7 @@ import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
+import 'screens/parallaxcardsscreen.dart';
 import 'screens/pdfreader.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
@@ -745,6 +746,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const TabswitcherExample()));
+                        }),
+                    Button(
+                        text: 'Parallax Card',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ParallaxcardExample()));
                         }),
                   ],
                 ),

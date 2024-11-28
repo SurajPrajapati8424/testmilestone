@@ -76,6 +76,7 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   no_screenshot: ^0.3.1
   package_info_plus: ^8.1.1
+  parallax_image_ns: ^0.3.2
   path_provider: ^2.1.5
   permission_guard: ^2.0.1
   permission_handler: ^11.3.1
