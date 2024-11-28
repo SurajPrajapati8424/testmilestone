@@ -25,6 +25,7 @@ import 'screens/fl_chart.dart';
 import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
+import 'screens/linkpeakscreen.dart';
 import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
@@ -755,6 +756,15 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ParallaxcardExample()));
+                        }),
+                    Button(
+                        text: 'Link Prev',
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LinkpeakExample()));
                         }),
                   ],
                 ),
