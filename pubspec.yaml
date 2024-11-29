@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   adblock_detector: ^0.0.2
+  advstory: ^0.2.1
   animate_do: ^3.3.4
   animated_countdown: ^0.0.3
   animated_custom_dropdown: ^3.1.1

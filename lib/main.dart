@@ -51,6 +51,7 @@ import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
 import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
+import 'screens/storyscreen.dart';
 import 'screens/string_contains.dart';
 import 'screens/tabswitcherscreen.dart';
 import 'screens/textgradientscreen.dart';
@@ -165,7 +166,7 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       builder: (context, child) {
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.red,
           appBar: AppBar(),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -806,6 +807,28 @@ class HomePage extends StatelessWidget {
                                       builder: (context) =>
                                           const ShowcaseExample()));
                             }),
+                        Button(
+                            text: 'AdvStory',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AdvStoryDemo()));
+                            }),
+                        Button(
+                          width: 89,
+                          text: 'Create\nQuiz',
+                          textColor: Colors.white,
+                          textCenter: true,
+                          color: Colors.blue,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w900,
+                          topIcon: topIcon(35),
+                          borderRadius: 18,
+                          padding: const EdgeInsets.only(top: 12, bottom: 5),
+                          onTap: () {},
+                        ),
                       ],
                     ),
 
@@ -823,4 +846,20 @@ class HomePage extends StatelessWidget {
       },
     );
   }
+}
+
+Widget topIcon(double size) {
+  return Container(
+    width: size,
+    height: size,
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(size / 3.5),
+      color: Colors.transparent,
+      border: Border.all(width: size / 9, color: Colors.white),
+    ),
+    child: Center(
+      child: Icon(Icons.add, color: Colors.white, size: size - 7),
+    ),
+  );
 }
