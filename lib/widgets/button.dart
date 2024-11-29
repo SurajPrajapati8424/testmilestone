@@ -21,6 +21,7 @@ class Button extends StatelessWidget {
   final Widget? leftWidget;
   final BoxBorder? border;
   final double? minWidth;
+  final Widget? topIcon;
   const Button({
     super.key,
     this.text = 'Button',
@@ -40,6 +41,7 @@ class Button extends StatelessWidget {
     this.leftWidget,
     this.border,
     this.minWidth,
+    this.topIcon,
   });
 
   Color darkenColor(Color color, [double amount = 0.087]) {
@@ -72,40 +74,53 @@ class Button extends StatelessWidget {
           ),
           child: Padding(
             padding: padding ?? const EdgeInsets.all(12),
-            child: Stack(
-              alignment: textCenter ? Alignment.center : Alignment.centerLeft,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                if (topIcon != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: topIcon!,
+                  ), // Icon
+                Stack(
+                  alignment:
+                      textCenter ? Alignment.center : Alignment.centerLeft,
                   children: [
-                    leftWidget ?? const SizedBox(height: 0, width: 0),
-                    if (leftWidget != null)
-                      const SizedBox(
-                          width: 8), // add some space between image and text
-                    TextWidget(
-                      text: text,
-                      color: stackText != null
-                          ? Colors.transparent
-                          : textColor ?? Colors.white,
-                      fontSize: fontSize ?? 16,
-                      fontWeight: fontWeight ?? FontWeight.w700,
-                      textAlign:
-                          textCenter ? TextAlign.center : TextAlign.start,
-                      maxLines: maxLines,
-                      textOverflow: textOverflow,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        leftWidget ?? const SizedBox(height: 0, width: 0),
+                        if (leftWidget != null)
+                          const SizedBox(
+                              width:
+                                  8), // add some space between image and text
+                        TextWidget(
+                          text: text,
+                          color: stackText != null
+                              ? Colors.transparent
+                              : textColor ?? Colors.white,
+                          fontSize: fontSize ?? 16,
+                          fontWeight: fontWeight ?? FontWeight.w700,
+                          textAlign:
+                              textCenter ? TextAlign.center : TextAlign.start,
+                          maxLines: maxLines,
+                          textOverflow: textOverflow,
+                        ),
+                        if (stackText != null)
+                          TextWidget(
+                            text: stackText ?? '',
+                            color: textColor ?? Colors.white,
+                            fontSize: fontSize ?? 16,
+                            fontWeight: fontWeight ?? FontWeight.w700,
+                            textAlign:
+                                textCenter ? TextAlign.center : TextAlign.start,
+                            maxLines: maxLines,
+                            textOverflow: textOverflow,
+                          ),
+                      ],
                     ),
-                    if (stackText != null)
-                      TextWidget(
-                        text: stackText ?? '',
-                        color: textColor ?? Colors.white,
-                        fontSize: fontSize ?? 16,
-                        fontWeight: fontWeight ?? FontWeight.w700,
-                        textAlign:
-                            textCenter ? TextAlign.center : TextAlign.start,
-                        maxLines: maxLines,
-                        textOverflow: textOverflow,
-                      ),
                   ],
                 ),
               ],
