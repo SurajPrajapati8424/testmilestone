@@ -1,5 +1,5 @@
 // ignore_for_file: unused_import, avoid_print
-import 'package:face_camera/face_camera.dart';
+// import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -26,6 +26,7 @@ import 'screens/fl_chart.dart';
 import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
+// import 'screens/imgtopdf.dart';
 import 'screens/linkpeakscreen.dart';
 import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
@@ -44,6 +45,7 @@ import 'screens/readmorescreen.dart';
 import 'screens/richtexteditor.dart';
 import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
+import 'screens/scanner.dart';
 import 'screens/screenshotwidgetonly.dart';
 import 'screens/scrolltotop.dart';
 import 'screens/showcasescreen.dart';
@@ -72,7 +74,8 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  await FaceCamera.initialize();
+  // await FaceCamera.initialize();
+  // await availableCameras();  // for doc reading
 
   // QuickSettings.setup(
   //   onTileClicked: onTileClicked,
@@ -559,15 +562,15 @@ class HomePage extends StatelessWidget {
                                       builder: (context) =>
                                           const Focus_Widget_Example()));
                             }),
-                        Button(
-                            text: 'Face_Camera',
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Face_Camera()));
-                            }),
+                        // Button(
+                        //     text: 'Face_Camera',
+                        //     onTap: () {
+                        //       Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) =>
+                        //                   const Face_Camera()));
+                        //     }),
                         // Button(
                         //     text: 'Secure App',
                         //     onTap: () {
@@ -829,6 +832,15 @@ class HomePage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 12, bottom: 5),
                           onTap: () {},
                         ),
+                        Button(
+                            text: 'Scanner',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ScannerScreen()));
+                            }),
                       ],
                     ),
 
