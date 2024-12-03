@@ -19,6 +19,7 @@ import 'screens/avatarscreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
+import 'screens/cropimagescreen.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
@@ -850,6 +851,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const UploadImageExample()));
+                            }),
+                        Button(
+                            text: 'Crop Img',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CropImageExample()));
                             }),
                       ],
                     ),
