@@ -21,6 +21,7 @@ import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
 import 'screens/cropimagescreen.dart';
 import 'screens/deviceinfo.dart';
+import 'screens/entryscreen.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
@@ -870,6 +871,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const ScrollLoopExample()));
+                            }),
+                        Button(
+                            text: 'Entry App Animation',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EntryappExample()));
                             }),
                       ],
                     ),
