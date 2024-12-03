@@ -832,15 +832,15 @@ class HomePage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 12, bottom: 5),
                           onTap: () {},
                         ),
-                        Button(
-                            text: 'Scanner',
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ScannerScreen()));
-                            }),
+                        // Button(
+                        //     text: 'Scanner',
+                        //     onTap: () {
+                        //       Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) =>
+                        //                   const ScannerScreen()));
+                        //     }),
                       ],
                     ),
 
