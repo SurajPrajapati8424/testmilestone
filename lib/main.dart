@@ -48,6 +48,7 @@ import 'screens/safetextscreen.dart';
 // import 'screens/secure_app.dart';
 import 'screens/scanner.dart';
 import 'screens/screenshotwidgetonly.dart';
+import 'screens/scrollloopscreen.dart';
 import 'screens/scrolltotop.dart';
 import 'screens/showcasescreen.dart';
 import 'screens/slidetoastscreen.dart';
@@ -860,6 +861,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const CropImageExample()));
+                            }),
+                        Button(
+                            text: 'Scroll Loop',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ScrollLoopExample()));
                             }),
                       ],
                     ),
