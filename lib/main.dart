@@ -61,6 +61,7 @@ import 'screens/textroundedscreen.dart';
 import 'screens/timepickerscreen.dart';
 import 'screens/tinyavatarscreen.dart';
 import 'screens/tooltipscreen.dart';
+import 'screens/uploadimage.dart';
 import 'screens/versionCheck.dart';
 import 'screens/widget_and_text_animator.dart';
 import 'screens/wordcloud.dart';
@@ -841,6 +842,15 @@ class HomePage extends StatelessWidget {
                         //               builder: (context) =>
                         //                   const ScannerScreen()));
                         //     }),
+                        Button(
+                            text: 'Upload Img',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UploadImageExample()));
+                            }),
                       ],
                     ),
 
