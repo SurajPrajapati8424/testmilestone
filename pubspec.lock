@@ -281,6 +281,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  cool_dropdown:
+    dependency: "direct main"
+    description:
+      name: cool_dropdown
+      sha256: "23926fd242b625bcb7ab30c1336498d60f78267518db439141ca19de403ab030"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   crop_your_image:
     dependency: "direct main"
     description:

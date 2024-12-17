@@ -21,7 +21,8 @@ import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
 import 'screens/cropimagescreen.dart';
 import 'screens/deviceinfo.dart';
-import 'screens/dropdownscreen.dart';
+import 'screens/dropdowncool.dart';
+import 'screens/dropdowncustomanimated.dart';
 import 'screens/entryscreen.dart';
 import 'screens/face_camera.dart';
 import 'screens/feedbackscreen.dart';
@@ -890,7 +891,16 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const DropdownExample()));
-                            })
+                            }),
+                        Button(
+                            text: 'Dropdown Cool',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DropdownCoolExample()));
+                            }),
                       ],
                     ),
 
