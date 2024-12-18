@@ -19,6 +19,8 @@ class AnswerInputWidget extends StatefulWidget {
   final double? dividerThickness;
   final Icon? rightIcon;
   final TextEditingController? controller;
+  final bool? enabled;
+  final FocusNode? focusNode;
   const AnswerInputWidget({
     super.key,
     required this.hintText,
@@ -36,6 +38,8 @@ class AnswerInputWidget extends StatefulWidget {
     this.maxLength,
     this.rightIcon,
     this.controller,
+    this.enabled = true,
+    this.focusNode,
   });
 
   @override
@@ -64,9 +68,11 @@ class _AnswerInputWidgetState extends State<AnswerInputWidget> {
       children: [
         TextFormField(
           controller: _controller,
+          focusNode: widget.focusNode,
           autofocus: false,
           maxLines: widget.maxLines,
           maxLength: widget.maxLength,
+          enabled: widget.enabled,
           obscureText: false,
           keyboardType: widget.keyboardType ?? TextInputType.text,
           decoration: InputDecoration(

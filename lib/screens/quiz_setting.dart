@@ -65,104 +65,111 @@ class Quiz_Settings extends StatelessWidget {
       "Participant scoreboard",
       "App Only",
     ];
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Button(
-                    text: 'PRINT with DELAY OF 3 Sec.',
-                    onTap: () async {
-                      String data = await fetchData();
-                      debugPrint(data);
-                    }),
-                ...List.generate(
-                  settingsOption.length,
-                  (int index) {
-                    return ScoreItemWidget(
-                        label: settingsOption[index],
-                        onCheckboxChanged: (boo) {
-                          // debugPrint('${settingsOption[index]}-> $boo');
-                          //  This is reading value from 'settingsOption' as this is Single Option without Right-Widget
-                          // settingsJSON[settingsOption[index]] = boo;
-                          settingsJSON.update(
-                              settingsOption[index], (value) => boo,
-                              ifAbsent: () => boo);
-                        });
-                  },
-                ),
-                //
-                ReusableExpansionPanelList(items: itemsss),
-                //
-                ScoreItemWidget(
-                  label:
-                      'Maximum Submit Limit Show / Hide Answer Shuffle Questions Order Show Leaderboard Shuffle Questions Order',
-                  rightWidget: true,
-                  onCheckboxChanged: (val) {
-                    // debugPrint('maximum submit limit -> $val');
-                    settingsJSON.update(
-                      'Maximum Submit Limit Show / Hide Answer Shuffle Questions Order Show Leaderboard Shuffle Questions Order',
-                      (value) => val,
-                      ifAbsent: () => val,
-                    );
-                  },
-                ),
-                // Time
-                TimeRangeSelector(
-                  initialStartTime: "10th Jan, Wed, 2024 at 10:15am",
-                  initialEndTime: "10th Jan, Wed, 2024 at 12:15pm",
-                  onCheckboxChanged: (val) {
-                    // debugPrint('time range -> $str');
-                    settingsJSON.update(
-                      'Start Time / End Time',
-                      (value) => val,
-                      ifAbsent: () => val,
-                    );
-                  },
-                  onTimeRangeChanged: (start, end) {
-                    // debugPrint('time range changed -> $start $end');
-                    timeJSON['start'] = start;
-                    timeJSON['end'] = end;
-                  },
-                ),
-                // Fields
-                const AddFields(count: 1),
-                // Button
-                SizedBox(height: 18.w),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Button(
-                        text: 'Save',
-                        padding: const EdgeInsets.all(5),
+    return GestureDetector(
+      behavior: HitTestBehavior
+          .translucent, // Allows the gesture to work outside the focus area
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Unfocus the current text field
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Button(
+                      text: 'PRINT with DELAY OF 3 Sec.',
+                      onTap: () async {
+                        String data = await fetchData();
+                        debugPrint(data);
+                      }),
+                  ...List.generate(
+                    settingsOption.length,
+                    (int index) {
+                      return ScoreItemWidget(
+                          label: settingsOption[index],
+                          onCheckboxChanged: (boo) {
+                            // debugPrint('${settingsOption[index]}-> $boo');
+                            //  This is reading value from 'settingsOption' as this is Single Option without Right-Widget
+                            // settingsJSON[settingsOption[index]] = boo;
+                            settingsJSON.update(
+                                settingsOption[index], (value) => boo,
+                                ifAbsent: () => boo);
+                          });
+                    },
+                  ),
+                  //
+                  ReusableExpansionPanelList(items: itemsss),
+                  //
+                  ScoreItemWidget(
+                    label:
+                        'Maximum Submit Limit Show / Hide Answer Shuffle Questions Order Show Leaderboard Shuffle Questions Order',
+                    rightWidget: true,
+                    onCheckboxChanged: (val) {
+                      // debugPrint('maximum submit limit -> $val');
+                      settingsJSON.update(
+                        'Maximum Submit Limit Show / Hide Answer Shuffle Questions Order Show Leaderboard Shuffle Questions Order',
+                        (value) => val,
+                        ifAbsent: () => val,
+                      );
+                    },
+                  ),
+                  // Time
+                  TimeRangeSelector(
+                    initialStartTime: "10th Jan, Wed, 2024 at 10:15am",
+                    initialEndTime: "10th Jan, Wed, 2024 at 12:15pm",
+                    onCheckboxChanged: (val) {
+                      // debugPrint('time range -> $str');
+                      settingsJSON.update(
+                        'Start Time / End Time',
+                        (value) => val,
+                        ifAbsent: () => val,
+                      );
+                    },
+                    onTimeRangeChanged: (start, end) {
+                      // debugPrint('time range changed -> $start $end');
+                      timeJSON['start'] = start;
+                      timeJSON['end'] = end;
+                    },
+                  ),
+                  // Fields
+                  const AddFields(count: 1),
+                  // Button
+                  SizedBox(height: 18.w),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Button(
+                          text: 'Save',
+                          padding: const EdgeInsets.all(5),
+                          textCenter: true,
+                          height: 53.375.h,
+                          width: 160.125.w,
+                          color: const Color(0xFF00C85C),
+                          onTap: () {
+                            // debugPrint('SAVE');
+                            debugPrint('$settingsJSON');
+                            debugPrint('$limitJSON');
+                            debugPrint('$timeJSON');
+                          }),
+                      Button(
+                        text: 'Add field',
                         textCenter: true,
                         height: 53.375.h,
                         width: 160.125.w,
-                        color: const Color(0xFF00C85C),
+                        color: const Color(0xFFF6F6F6),
+                        textColor: const Color(0xFF939393),
                         onTap: () {
-                          // debugPrint('SAVE');
-                          debugPrint('$settingsJSON');
-                          debugPrint('$limitJSON');
-                          debugPrint('$timeJSON');
-                        }),
-                    Button(
-                      text: 'Add field',
-                      textCenter: true,
-                      height: 53.375.h,
-                      width: 160.125.w,
-                      color: const Color(0xFFF6F6F6),
-                      textColor: const Color(0xFF939393),
-                      onTap: () {
-                        debugPrint('$fieldsJSON\n');
-                      },
-                    ),
-                  ],
-                )
-              ],
+                          debugPrint('$fieldsJSON\n');
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

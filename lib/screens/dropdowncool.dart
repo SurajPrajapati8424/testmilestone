@@ -194,33 +194,149 @@ class DropdownCoolExampleState extends State<DropdownCoolExample> {
               height: 200,
             ),
             Center(
-              child: CoolDropdown<String>(
-                controller: pokemonDropdownController,
-                dropdownList: pokemonDropdownItems,
-                defaultItem: pokemonDropdownItems.last,
-                onChange: (a) {
-                  pokemonDropdownController.close();
-                },
-                resultOptions: const ResultOptions(
-                  width: 70,
-                  render: ResultRender.icon,
-                  icon: SizedBox(
-                    width: 10,
-                    height: 10,
-                    child: CustomPaint(
-                      painter: DropdownArrowPainter(color: Colors.green),
+              child: Row(
+                children: [
+                  CoolDropdown<String>(
+                    controller: pokemonDropdownController,
+                    dropdownList: pokemonDropdownItems,
+                    defaultItem: pokemonDropdownItems.last,
+                    onChange: (a) {
+                      pokemonDropdownController.close();
+                    },
+                    resultOptions: const ResultOptions(
+                      width: 70,
+                      render: ResultRender.icon,
+                      icon: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CustomPaint(
+                          painter: DropdownArrowPainter(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    dropdownOptions: const DropdownOptions(
+                      width: 140,
+                    ),
+                    dropdownItemOptions: const DropdownItemOptions(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      selectedBoxDecoration: BoxDecoration(
+                        color: Color(0XFFEFFAF0),
+                      ),
                     ),
                   ),
-                ),
-                dropdownOptions: const DropdownOptions(
-                  width: 140,
-                ),
-                dropdownItemOptions: const DropdownItemOptions(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  selectedBoxDecoration: BoxDecoration(
-                    color: Color(0XFFEFFAF0),
+                  CoolDropdown<String>(
+                    controller: pokemonDropdownController,
+                    dropdownList: pokemonDropdownItems,
+                    defaultItem: pokemonDropdownItems.last,
+                    onChange: (a) {
+                      pokemonDropdownController.close();
+                    },
+                    resultOptions: const ResultOptions(
+                      width: 70,
+                      render: ResultRender.icon,
+                      icon: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CustomPaint(
+                          painter: DropdownArrowPainter(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    dropdownOptions: const DropdownOptions(
+                      width: 140,
+                    ),
+                    dropdownItemOptions: const DropdownItemOptions(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      selectedBoxDecoration: BoxDecoration(
+                        color: Color(0XFFEFFAF0),
+                      ),
+                    ),
                   ),
-                ),
+                  CoolDropdown<String>(
+                    controller: pokemonDropdownController,
+                    dropdownList: pokemonDropdownItems,
+                    defaultItem: pokemonDropdownItems.last,
+                    onChange: (a) {
+                      pokemonDropdownController.close();
+                    },
+                    resultOptions: const ResultOptions(
+                      width: 70,
+                      render: ResultRender.icon,
+                      icon: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CustomPaint(
+                          painter: DropdownArrowPainter(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    dropdownOptions: const DropdownOptions(
+                      width: 140,
+                    ),
+                    dropdownItemOptions: const DropdownItemOptions(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      selectedBoxDecoration: BoxDecoration(
+                        color: Color(0XFFEFFAF0),
+                      ),
+                    ),
+                  ),
+                  CoolDropdown<String>(
+                    controller: pokemonDropdownController,
+                    dropdownList: pokemonDropdownItems,
+                    defaultItem: pokemonDropdownItems.last,
+                    onChange: (a) {
+                      pokemonDropdownController.close();
+                    },
+                    resultOptions: const ResultOptions(
+                      width: 70,
+                      render: ResultRender.icon,
+                      icon: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CustomPaint(
+                          painter: DropdownArrowPainter(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    dropdownOptions: const DropdownOptions(
+                      width: 140,
+                    ),
+                    dropdownItemOptions: const DropdownItemOptions(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      selectedBoxDecoration: BoxDecoration(
+                        color: Color(0XFFEFFAF0),
+                      ),
+                    ),
+                  ),
+                  CoolDropdown<String>(
+                    controller: pokemonDropdownController,
+                    dropdownList: pokemonDropdownItems,
+                    defaultItem: pokemonDropdownItems.last,
+                    onChange: (a) {
+                      pokemonDropdownController.close();
+                    },
+                    resultOptions: const ResultOptions(
+                      width: 70,
+                      render: ResultRender.icon,
+                      icon: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: CustomPaint(
+                          painter: DropdownArrowPainter(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    dropdownOptions: const DropdownOptions(
+                      width: 140,
+                    ),
+                    dropdownItemOptions: const DropdownItemOptions(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      selectedBoxDecoration: BoxDecoration(
+                        color: Color(0XFFEFFAF0),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(
