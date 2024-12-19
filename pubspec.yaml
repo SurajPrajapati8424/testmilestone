@@ -31,16 +31,19 @@ dependencies:
   adblock_detector: ^0.0.2
   advstory: ^0.2.1
   animate_do: ^3.3.4
+  animated_checkmark: ^1.0.1
   animated_countdown: ^0.0.3
   animated_custom_dropdown: ^3.1.1
   animated_gradient: ^0.0.3
   animated_text_kit: ^4.2.2
   app_version_update: ^5.0.3
+  async: ^2.11.0
   audioplayers: ^6.1.0
   auto_animated_list: ^2.0.0
   avatar_stack: ^1.2.0
   blurhash_dart: ^1.2.1
   chiclet: ^1.2.0
+  choice: ^2.3.2
   connecteo: ^3.0.0
   cool_dropdown: ^2.1.1
   crop_your_image: ^1.1.0
@@ -59,7 +62,6 @@ dependencies:
   flutter_animate: ^4.5.1
   flutter_blurhash: ^0.8.2
   flutter_card_swiper: ^7.0.2
-  # flutter_document_scanner: ^1.1.2
   flutter_email_sender: ^6.0.3
   flutter_inappwebview: ^6.1.5
   flutter_localizations:

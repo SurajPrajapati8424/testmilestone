@@ -19,6 +19,7 @@ import 'screens/avatarscreen.dart';
 import 'screens/blurhashscreen.dart';
 import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
+import 'screens/choicescreen.dart';
 import 'screens/cropimagescreen.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/dropdowncool.dart';
@@ -900,6 +901,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const DropdownCoolExample()));
+                            }),
+                        Button(
+                            text: 'Choice',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChoiceExample()));
                             }),
                       ],
                     ),
