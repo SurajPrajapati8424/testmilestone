@@ -6,6 +6,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:testmilestone/screens/csvpickerscreen.dart';
+import 'package:testmilestone/screens/osmscreen.dart';
 import 'function/countdown.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
@@ -37,6 +38,8 @@ import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
+import 'screens/osmleg_two.dart';
+import 'screens/osm_geo_address.dart';
 import 'screens/parallaxcardsscreen.dart';
 import 'screens/pdfreader.dart';
 import 'screens/permissionguardscreen.dart';
@@ -910,6 +913,30 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const ChoiceExample()));
+                            }),
+                        Button(
+                            text: 'OSM Geo',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Osmscreen()));
+                            }),
+                        Button(
+                            text: 'Osm',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OSMMapScreen()));
+                            }),
+                        Button(
+                            text: 'Osm-test',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OSMtest()));
                             }),
                       ],
                     ),
