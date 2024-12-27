@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:testmilestone/screens/csvpickerscreen.dart';
@@ -36,6 +37,7 @@ import 'screens/geoscreen.dart';
 import 'screens/linkpeakscreen.dart';
 import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
+import 'screens/mytheme.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
 import 'screens/osmleg_two.dart';
@@ -94,9 +96,14 @@ void main() async {
   // );
 
   runApp(
-    const ScreenUtilInit(
-      designSize: Size(360, 752),
-      child: BetterFeedback(child: MyApp()),
+    ChangeNotifierProvider(
+      create: (context) => AppThemeNotifier(),
+      child: const ScreenUtilInit(
+        designSize: Size(360, 752),
+        child: BetterFeedback(
+          child: MyApp(),
+        ),
+      ),
     ),
   );
 }
@@ -936,7 +943,7 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => OSMtest()));
+                                      builder: (context) => const OSMtest()));
                             }),
                       ],
                     ),

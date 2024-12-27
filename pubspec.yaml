@@ -94,6 +94,7 @@ dependencies:
   permission_guard: ^2.0.1
   permission_handler: ^11.3.1
   pointer_interceptor: ^0.10.1+2
+  provider: ^6.1.2
   read_pdf_text: ^0.2.3
   readmore: ^3.0.0
   rounded_background_text: ^0.5.0
