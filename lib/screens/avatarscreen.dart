@@ -44,12 +44,12 @@ class AvatarStackExample extends StatelessWidget {
                 ),
               ),
             ),
-            Example11Vertical(),
-            Example12Vertical(),
-            RotatedBox(
-              quarterTurns: 3,
-              child: Example1Default(name: 'RotatedBox'),
-            ),
+            // Example11Vertical(),
+            // Example12Vertical(),
+            // RotatedBox(
+            //   quarterTurns: 3,
+            //   child: Example1Default(name: 'RotatedBox'),
+            // ),
           ],
         ),
       ),

@@ -46,6 +46,8 @@ import 'screens/parallaxcardsscreen.dart';
 import 'screens/pdfreader.dart';
 import 'screens/permissionguardscreen.dart';
 import 'screens/playaudio.dart';
+import 'screens/playernews.dart';
+import 'screens/playerstatus.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
@@ -83,6 +85,7 @@ import 'package:feedback/feedback.dart';
 import 'widgets/text.dart';
 
 void main() async {
+  print('App started');
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
@@ -944,6 +947,24 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const OSMtest()));
+                            }),
+                        Button(
+                            text: 'Player Status',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Playerstatus()));
+                            }),
+                        Button(
+                            text: 'Player News',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PlayerNews()));
                             }),
                       ],
                     ),
