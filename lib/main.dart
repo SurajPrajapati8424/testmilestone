@@ -1,9 +1,12 @@
 // ignore_for_file: unused_import, avoid_print
 // import 'package:face_camera/face_camera.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:purchases_flutter/models/store.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:testmilestone/screens/csvpickerscreen.dart';
@@ -22,6 +25,7 @@ import 'screens/blurhashscreen.dart';
 import 'screens/cardswiper.dart';
 import 'screens/chiclet_button.dart';
 import 'screens/choicescreen.dart';
+import 'screens/constant.dart';
 import 'screens/cropimagescreen.dart';
 import 'screens/deviceinfo.dart';
 import 'screens/dropdowncool.dart';
@@ -51,6 +55,7 @@ import 'screens/playerstatus.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
+import 'screens/purchasescreen.dart';
 import 'screens/quiz_setting.dart';
 import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
@@ -97,7 +102,24 @@ void main() async {
   //   onTileAdded: onTileAdded,
   //   onTileRemoved: onTileRemoved,
   // );
-
+  // in-App Purchase
+  if (Platform.isIOS || Platform.isMacOS) {
+    StoreConfig(
+      store: Store.appStore,
+      apiKey: appleApiKey,
+    );
+  } else if (Platform.isAndroid) {
+    // Run the app passing --dart-define=AMAZON=true
+    // const useAmazon = bool.fromEnvironment("amazon");
+    StoreConfig(
+      // store: useAmazon ? Store.amazon : Store.playStore,
+      store: Store.playStore,
+      // apiKey: useAmazon ? amazonApiKey : googleApiKey,
+      apiKey: googleApiKey,
+    );
+  }
+  await configureSDK();
+  // in-App Purchase
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppThemeNotifier(),
@@ -965,6 +987,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const PlayerNews()));
+                            }),
+                        Button(
+                            text: 'in-App Purchase',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MagicWeatherFlutter()));
                             }),
                       ],
                     ),
