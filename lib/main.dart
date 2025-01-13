@@ -55,7 +55,7 @@ import 'screens/playerstatus.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
-import 'screens/purchasescreen.dart';
+
 import 'screens/quiz_setting.dart';
 import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
@@ -73,6 +73,8 @@ import 'screens/staggeredscreen.dart';
 import 'screens/starsviewscreen.dart';
 import 'screens/storyscreen.dart';
 import 'screens/string_contains.dart';
+import 'screens/subscriptionpackages.dart';
+import 'screens/subscriptionpackages_bkp.dart';
 import 'screens/tabswitcherscreen.dart';
 import 'screens/textgradientscreen.dart';
 import 'screens/textroundedscreen.dart';
@@ -102,24 +104,7 @@ void main() async {
   //   onTileAdded: onTileAdded,
   //   onTileRemoved: onTileRemoved,
   // );
-  // in-App Purchase
-  if (Platform.isIOS || Platform.isMacOS) {
-    StoreConfig(
-      store: Store.appStore,
-      apiKey: appleApiKey,
-    );
-  } else if (Platform.isAndroid) {
-    // Run the app passing --dart-define=AMAZON=true
-    // const useAmazon = bool.fromEnvironment("amazon");
-    StoreConfig(
-      // store: useAmazon ? Store.amazon : Store.playStore,
-      store: Store.playStore,
-      // apiKey: useAmazon ? amazonApiKey : googleApiKey,
-      apiKey: googleApiKey,
-    );
-  }
-  await configureSDK();
-  // in-App Purchase
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppThemeNotifier(),
@@ -399,7 +384,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Button(
-                          text: 'Word Doc',
+                          text: 'Quill Doc',
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -989,13 +974,22 @@ class HomePage extends StatelessWidget {
                                           const PlayerNews()));
                             }),
                         Button(
-                            text: 'in-App Purchase',
+                            text: 'Subscription Packages',
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const MagicWeatherFlutter()));
+                                          const SubscriptionPlanScreen()));
+                            }),
+                        Button(
+                            text: 'Subscription',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SubscriptionPlanScreenBkp()));
                             }),
                       ],
                     ),
