@@ -38,6 +38,7 @@ import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
 import 'screens/geoscreen.dart';
 // import 'screens/imgtopdf.dart';
+import 'screens/joinquizz.dart';
 import 'screens/linkpeakscreen.dart';
 import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
@@ -999,6 +1000,14 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const SubscriptionPlanScreenBkp()));
+                            }),
+                        Button(
+                            text: 'Join Quizz',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LiveQuizz()));
                             }),
                       ],
                     ),
