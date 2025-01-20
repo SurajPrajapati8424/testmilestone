@@ -36,6 +36,7 @@ import 'screens/feedbackscreen.dart';
 import 'screens/fl_chart.dart';
 import 'screens/flutteranimationscreen.dart';
 import 'screens/focusonit.dart';
+import 'screens/forgetandresetpsk.dart';
 import 'screens/geoscreen.dart';
 // import 'screens/imgtopdf.dart';
 import 'screens/joinquizz.dart';
@@ -1008,6 +1009,11 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const LiveQuizz()));
+                            }),
+                        Button(
+                            text: 'Forget & ResetPsk',
+                            onTap: () {
+                              showForgetAndResetPsk(context);
                             }),
                       ],
                     ),
