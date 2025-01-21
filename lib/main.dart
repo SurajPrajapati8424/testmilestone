@@ -68,6 +68,7 @@ import 'screens/scanner.dart';
 import 'screens/screenshotwidgetonly.dart';
 import 'screens/scrollloopscreen.dart';
 import 'screens/scrolltotop.dart';
+import 'screens/settingscreen.dart';
 import 'screens/showcasescreen.dart';
 import 'screens/slidetoastscreen.dart';
 import 'screens/smoothsheet.dart';
@@ -1014,6 +1015,15 @@ class HomePage extends StatelessWidget {
                             text: 'Forget & ResetPsk',
                             onTap: () {
                               showForgetAndResetPsk(context);
+                            }),
+                        Button(
+                            text: 'Setting',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SettingScreen()));
                             }),
                       ],
                     ),
