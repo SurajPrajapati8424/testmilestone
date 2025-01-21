@@ -55,7 +55,7 @@ import 'screens/playerstatus.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
-
+import 'screens/quillreadonly.dart';
 import 'screens/quiz_setting.dart';
 import 'screens/rating.dart';
 import 'screens/readmorescreen.dart';
@@ -389,6 +389,15 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => const WordDoc(),
+                            ),
+                          ),
+                        ),
+                        Button(
+                          text: 'Quill read only',
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ReadOnlyWordDoc(),
                             ),
                           ),
                         ),
