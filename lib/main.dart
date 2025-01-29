@@ -51,6 +51,7 @@ import 'screens/osm_geo_address.dart';
 import 'screens/parallaxcardsscreen.dart';
 import 'screens/pdfreader.dart';
 import 'screens/permissionguardscreen.dart';
+import 'screens/personalinfo.dart';
 import 'screens/playaudio.dart';
 import 'screens/playernews.dart';
 import 'screens/playerstatus.dart';
@@ -199,7 +200,7 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       builder: (context, child) {
         return Scaffold(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.white,
           appBar: AppBar(),
           body: SafeArea(
             child: SingleChildScrollView(
@@ -1024,6 +1025,15 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const SettingScreen()));
+                            }),
+                        Button(
+                            text: 'Personal Info',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PersonalInfo()));
                             }),
                       ],
                     ),
