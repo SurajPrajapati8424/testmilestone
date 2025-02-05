@@ -10,19 +10,29 @@ import '../widgets/inputfield.dart';
 import '../widgets/text.dart';
 
 class PersonalInfo extends StatelessWidget {
-  const PersonalInfo({super.key});
+  final String? name;
+  final String? email;
+  final String? number;
+  final String? age;
+  const PersonalInfo({
+    super.key,
+    this.name,
+    this.email,
+    this.number,
+    this.age,
+  });
 
   @override
   Widget build(BuildContext context) {
     // Define controllers as instance variables
     final TextEditingController nameController =
-        TextEditingController(text: 'Jon doe');
+        TextEditingController(text: name ?? 'Jon doe');
     final TextEditingController emailController =
-        TextEditingController(text: 'jon.doe@gmail.com');
+        TextEditingController(text: email ?? 'jon.doe@gmail.com');
     final TextEditingController phoneController =
-        TextEditingController(text: '9130055503');
+        TextEditingController(text: number ?? '1235467890');
     final TextEditingController ageController =
-        TextEditingController(text: '31');
+        TextEditingController(text: age ?? '11');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

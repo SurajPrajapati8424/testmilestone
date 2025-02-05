@@ -2,7 +2,7 @@ name: testmilestone
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -36,6 +36,7 @@ dependencies:
   animated_custom_dropdown: ^3.1.1
   animated_gradient: ^0.0.3
   animated_text_kit: ^4.2.2
+  app_links: ^6.3.3
   app_version_update: ^5.0.3
   async: ^2.11.0
   audioplayers: ^6.1.0

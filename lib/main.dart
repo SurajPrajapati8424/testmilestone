@@ -2,11 +2,13 @@
 // import 'package:face_camera/face_camera.dart';
 import 'dart:io';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:purchases_flutter/models/store.dart';
+import 'package:testmilestone/function/uni_services.dart';
 import 'package:testmilestone/screens/adscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:testmilestone/screens/csvpickerscreen.dart';
@@ -181,13 +183,15 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      initialRoute: "/",
-      routes: {
-        "/": (context) => const HomePage(),
-        "/rating": (context) => const RatingPage(),
-        "/playaudio": (context) => const PlayAudioScreen(),
-        "/word": (context) => const Wordcloud(),
-      },
+      home: const UniLinkListener(child: HomePage()),
+      // initialRoute: "/",
+      // routes: {
+      //   "/": (context) => const HomePage(),
+      //   "/rating": (context) => const RatingPage(),
+      //   "/playaudio": (context) => const PlayAudioScreen(),
+      //   "/word": (context) => const Wordcloud(),
+      //   "/setting": (context) => const SettingScreen(),
+      // },
     );
   }
 }
