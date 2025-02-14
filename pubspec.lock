@@ -755,6 +755,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_markdown:
+    dependency: "direct main"
+    description:
+      name: flutter_markdown
+      sha256: b3ff1ef5fb3924ee02b4d38b974ffae3969d50603e68787684ee9dd45f6f144a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.6+1"
   flutter_osm_interface:
     dependency: transitive
     description:
@@ -1245,6 +1253,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.2.2"
+  markdown_editor_plus:
+    dependency: "direct main"
+    description:
+      name: markdown_editor_plus
+      sha256: "8a4749e5b80330674dc20c65281fb2171ff583136a5ffb269802bd8fe818a7ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.15"
+  markdown_quill:
+    dependency: "direct main"
+    description:
+      name: markdown_quill
+      sha256: d9b070ad2356d4dfcbc7ab602c77c8c253714d886d0098e2379884036aa42061
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
   matcher:
     dependency: transitive
     description:
