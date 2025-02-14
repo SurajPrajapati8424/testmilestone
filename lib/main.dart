@@ -14,6 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:testmilestone/screens/csvpickerscreen.dart';
 import 'package:testmilestone/screens/osmscreen.dart';
 import 'function/countdown.dart';
+import 'function/inappviewscreen.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
 import 'screens/activityrecognition.dart';
@@ -45,6 +46,8 @@ import 'screens/joinquizz.dart';
 import 'screens/linkpeakscreen.dart';
 import 'screens/listautoanimated.dart';
 import 'screens/logger.dart';
+import 'screens/markdownscreen.dart';
+import 'screens/markdownscreen2.dart';
 import 'screens/mytheme.dart';
 import 'screens/no_screenshot.dart';
 import 'screens/nointernet.dart';
@@ -360,6 +363,16 @@ class HomePage extends StatelessWidget {
                             // showQuestionOption(context, 'https://youtube.com');
                             openInAppWebView(context, 'https://youtube.com');
                           },
+                        ),
+                        Button(
+                          text: 'open in App',
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const InAppWebViewScreen(
+                                        url: "https://www.wish.com",
+                                      ))),
                         ),
                         Button(
                           text: 'rate',
@@ -1038,6 +1051,24 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const PersonalInfo()));
+                            }),
+                        Button(
+                            text: 'Markdown',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MarkdownScreen()));
+                            }),
+                        Button(
+                            text: 'Markdown 2',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MarkdownScreenTwo()));
                             }),
                       ],
                     ),

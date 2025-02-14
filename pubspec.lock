@@ -473,6 +473,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  expandable:
+    dependency: transitive
+    description:
+      name: expandable
+      sha256: "9604d612d4d1146dafa96c6d8eec9c2ff0994658d6d09fed720ab788c7f5afc2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
   face_camera:
     dependency: "direct main"
     description:
@@ -877,6 +885,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  font_awesome_flutter:
+    dependency: transitive
+    description:
+      name: font_awesome_flutter
+      sha256: d3a89184101baec7f4600d58840a764d2ef760fe1c5a20ef9e6b0e9b24a07a3a
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.8.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -1261,14 +1277,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.15"
-  markdown_quill:
-    dependency: "direct main"
-    description:
-      name: markdown_quill
-      sha256: d9b070ad2356d4dfcbc7ab602c77c8c253714d886d0098e2379884036aa42061
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
   matcher:
     dependency: transitive
     description:
@@ -1597,6 +1605,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  quill_markdown:
+    dependency: "direct main"
+    description:
+      name: quill_markdown
+      sha256: "209831b93e3ec7b003d2d783743dd6b7e9700c92d55d69a10347c03a39cf1915"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   quill_native_bridge:
     dependency: transitive
     description:

@@ -101,6 +101,7 @@ dependencies:
   pretty_qr_code: ^3.3.0
   provider: ^6.1.2
   purchases_flutter: ^8.4.0
+  quill_markdown: ^0.1.0
   read_pdf_text: ^0.2.3
   readmore: ^3.0.0
   rounded_background_text: ^0.5.0

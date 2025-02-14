@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:quill_markdown/quill_markdown.dart';
 import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
+
+import '../function/copy.dart';
 
 enum QuillOutputType { json, text }
 
@@ -30,6 +33,7 @@ class _WordDocState extends State<WordDoc> {
 
   String? textData;
   String? jsonData;
+  String? markdowndata;
 
   @override
   void initState() {
@@ -52,6 +56,8 @@ class _WordDocState extends State<WordDoc> {
           debugPrint('on text $textData');
           debugPrint('on json $jsonData');
           debugPrint('on decode ${jsonDecode(jsonData!)}');
+          debugPrint('on markdowndata $markdowndata');
+          CopyText(text: markdowndata ?? "NULL", contexts: context);
         },
         child: const Icon(Icons.save),
       ),
@@ -61,15 +67,16 @@ class _WordDocState extends State<WordDoc> {
             QuillToolbarWidget(
               controller: _controller,
               initialData:
-                  '[{"insert":"Hi there\\n","attributes":{"bold":true}},{"insert":{"image":"https://m.media-amazon.com/images/I/71Tfszeu0DL._SX3000_.jpg"}},{"insert":"\\n","attributes":{"bold":true}},{"insert":"https://m.media-amazon.com/images/I/71Tfszeu0DL._SX3000_.jpg\\n"},{"insert":{"image":"https://m.media-amazon.com/images/I/71Tfszeu0DL._SX3000_.jpg"}},{"insert":"\\n\\n"}]',
+                  '[{"insert":"Hi there\\n"},{"insert":"Heading 1","attributes":{"bold":true}},{"insert":"\\n"},{"insert":"Some Italian dude","attributes":{"italic":true}},{"insert":"\\n"},{"insert":"link test","attributes":{"link":"https://www.amazon.in"}},{"insert":"\\nBreak time\\n\\n"}]',
             ),
             QuillEditorWidget(
               controller: _controller,
               focusNode: _focusNode,
-              onChange: (plainText, delta) {
+              onChange: (plainText, delta, markdowndata) {
                 setState(() {
                   textData = plainText;
                   jsonData = delta;
+                  this.markdowndata = markdowndata;
                 });
               },
             ),
@@ -149,7 +156,7 @@ class _QuillToolbarWidgetState extends State<QuillToolbarWidget> {
 class QuillEditorWidget extends StatelessWidget {
   final QuillController controller;
   final FocusNode focusNode;
-  final Function(String, String) onChange;
+  final Function(String, String, String) onChange;
 
   const QuillEditorWidget({
     super.key,
@@ -162,8 +169,10 @@ class QuillEditorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.addListener(() {
       final String plainText = controller.document.toPlainText();
-      final String delta = jsonEncode(controller.document.toDelta().toJson());
-      onChange(plainText, delta);
+      final delta = controller.document.toDelta();
+      final String deltaStr = jsonEncode(delta.toJson());
+      final String? markdowndata = quillToMarkdown(deltaStr);
+      onChange(plainText, deltaStr, markdowndata!);
     });
     return Padding(
       padding: const EdgeInsets.all(18.0),
