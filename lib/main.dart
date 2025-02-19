@@ -371,7 +371,7 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const InAppWebViewScreen(
-                                        url: "pub.dev",
+                                        url: "https://pub.dev/",
                                       ))),
                         ),
                         Button(

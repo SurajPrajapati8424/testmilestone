@@ -75,6 +75,70 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
     return NavigationActionPolicy.ALLOW;
   }
 
+  // 4. Cookie Manager
+  Future<void> manageCookies() async {
+    final WebUri url = WebUri(widget.url);
+    debugPrint("WebUri: $url");
+    // Get the CookieManager instance
+    final CookieManager cookieManager = CookieManager.instance();
+
+    // Set the expiration date for the cookie in milliseconds
+    final int expiresDate =
+        DateTime.now().add(const Duration(days: 1)).millisecondsSinceEpoch;
+    // Set the cookie
+    await cookieManager.setCookie(
+      url: url,
+      name: 'testMilestoneCookie',
+      value: 'testMilestoneCookieValue',
+      expiresDate: expiresDate,
+      isSecure: true, // Ensure this matches the URL scheme (true for HTTPS)
+    );
+    debugPrint("Cookie set successfully");
+
+    // Get cookies
+    // List<Cookie> cookies = await cookieManager.getCookies(url: url);
+
+    // Get a cookie
+    Cookie? cookie = await cookieManager.getCookie(
+      url: url,
+      name: "testMilestoneCookie",
+    );
+    debugPrint("Retrieved Cookie: ${cookie?.toString() ?? 'null'}");
+
+    // Delete cookies
+    // await cookieManager.deleteCookies(url: url, domain: ".pub.dev");
+
+    // Delete a cookie
+    await cookieManager.deleteCookie(url: url, name: "testMilestoneCookie");
+    debugPrint("Cookie deleted successfully");
+
+    // Verify deletion
+    Cookie? deletedCookie = await cookieManager.getCookie(
+      url: url,
+      name: "testMilestoneCookie",
+    );
+    debugPrint("Cookie after deletion: ${deletedCookie?.toString() ?? 'null'}");
+
+    /**
+     I/flutter (30803): WebUri: https://pub.dev/
+      I/flutter (30803): Cookie set successfully
+      I/flutter (30803): Retrieved Cookie: 
+                        Cookie{
+                          domain: pub.dev, 
+                          expiresDate: 1740016506000, 
+                          isHttpOnly: true, 
+                          isSecure: true, 
+                          isSessionOnly: null, 
+                          name: testMilestoneCookie, 
+                          path: /, 
+                          sameSite: null, 
+                          value: testMilestoneCookieValue
+                          }
+      I/flutter (30803): Cookie deleted successfully
+      I/flutter (30803): Cookie after deletion: null
+     */
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -191,6 +255,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
                         // To properly use late InAppWebViewController webViewController
                         // and initialized it when webCreated pass the contoller or working with "InAppWebView" same.
                         webViewController = controller;
+                        manageCookies();
                       },
                       onProgressChanged: (controller, progress) {
                         setState(() {
