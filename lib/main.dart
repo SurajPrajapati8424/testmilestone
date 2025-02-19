@@ -365,13 +365,13 @@ class HomePage extends StatelessWidget {
                           },
                         ),
                         Button(
-                          text: 'open in App',
+                          text: 'InAppReload-Navigation',
                           onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const InAppWebViewScreen(
-                                        url: "https://www.wish.com",
+                                        url: "pub.dev",
                                       ))),
                         ),
                         Button(
