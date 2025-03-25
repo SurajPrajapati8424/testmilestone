@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:testmilestone/screens/profile.dart';
 
 import '../widgets/text.dart';
 
@@ -12,7 +13,7 @@ import '../widgets/text.dart';
  * Changes in runApp() method.
  runApp(
     ChangeNotifierProvider(
-      create: (context) => AppThemeNotifier(),
+      create: (context) =>> AppThemeNotifier(),
       child: const ScreenUtilInit(
         designSize: Size(360, 752),
         child: BetterFeedback(
@@ -22,140 +23,45 @@ import '../widgets/text.dart';
     ),
   );
 }
+class AppThemeSS {
+  static final Colorss => AppColors();
+  static final TextStyle => AppTextStyles();
+  AppThemeSS._();
+  
+}
+Color colotr => AppThemeSS.Colorss.primary;
+
  */
-class AppColors {
-  // Brand Colors
-  static Color primary = const Color(0xFF00C85C);
-  static Color secondary = const Color(0xFF00BFA5);
-  static Color accent = Colors.greenAccent;
-
-  // Neutral Colors
-  static Color black = const Color(0xFF2A2A2A);
-  static Color white = const Color(0xFFFFFFFF);
-  static Color grey = const Color(0xFF9E9E9E);
-  static Color darkGrey = const Color(0xFF424242);
-  static Color lightGrey = const Color(0xFFE0E0E0);
-
-  // Semantic Colors
-  static Color success = const Color(0xFF4CAF50);
-  static Color error = const Color(0xFFD32F2F);
-  static Color warning = const Color(0xFFFFA000);
-  static Color info = const Color(0xFF1976D2);
-
-  // Background Colors
-  static Color background = const Color(0xFFFAFAFA);
-  static Color surface = const Color(0xFFFFFFFF);
-}
-
-class AppTextStyles {
-  // Display Styles
-  static TextStyle display1 = TextStyle(
-    fontSize: 48.w,
-    fontWeight: FontWeight.bold,
-  );
-
-  static TextStyle display2 = TextStyle(
-    fontSize: 40.w,
-    fontWeight: FontWeight.w600,
-  );
-
-  // Heading Styles
-  static TextStyle h1 = TextStyle(
-    fontSize: 32.w,
-    fontWeight: FontWeight.bold,
-  );
-
-  static TextStyle h2 = TextStyle(
-    fontSize: 24.w,
-    fontWeight: FontWeight.w600,
-  );
-
-  static TextStyle h3 = TextStyle(
-    fontSize: 20.w,
-    fontWeight: FontWeight.w600,
-  );
-  // Body Styles
-  static TextStyle bodyLarge = GoogleFonts.nunito(
-    fontSize: 16.w,
-    fontWeight: FontWeight.w700,
-  );
-
-  static TextStyle bodyMedium = GoogleFonts.nunito(
-    fontSize: 14.w,
-    fontWeight: FontWeight.w600,
-  );
-
-  static TextStyle bodySmall = GoogleFonts.nunito(
-    fontSize: 12.w,
-    fontWeight: FontWeight.normal,
-  );
-
-  // Button Text Styles
-  static TextStyle button = GoogleFonts.nunito(
-    fontSize: 14.w,
-    fontWeight: FontWeight.w500,
-  );
-
-  // Caption and Overline
-  static TextStyle caption = GoogleFonts.nunito(
-    fontSize: 12.w,
-    fontWeight: FontWeight.normal,
-  );
-
-  static TextStyle overline = GoogleFonts.nunito(
-    fontSize: 10.w,
-    fontWeight: FontWeight.normal,
-  );
-}
-
-class AppSpacing {
-  // Padding and Margin
-  static double xs = 4.0.w;
-  static double small = 8.0.w;
-  static double medium = 16.0.w;
-  static double large = 24.0.w;
-  static double xl = 32.0.w;
-  static double xxl = 48.0.w;
-
-  // Button Sizes
-  static double buttonHeight = 55.0.w;
-  static double buttonSmallHeight = 36.0.w;
-  static double buttonLargeHeight = 56.0.w;
-
-  // Icon Sizes
-  static double iconSmall = 16.0.w;
-  static double iconMedium = 24.0.w;
-  static double iconLarge = 32.0.w;
-
-  // Border Radius
-  static double radiusSmall = 4.0.w;
-  static double radiusMedium = 8.0.w;
-  static double radiusLarge = 16.0.w;
-}
 
 class AppTheme {
+  static final color = AppColors();
+  static final textStyle = AppTextStyles();
+  static final spacing = AppSpacing();
+
+  AppTheme._();
+
   static ThemeData get lightTheme {
     return ThemeData(
-      primaryColor: AppColors.primary,
-      scaffoldBackgroundColor: AppColors.background,
+      primaryColor: AppTheme.color.primary,
+      scaffoldBackgroundColor: AppTheme.color.background,
       textTheme: TextTheme(
-        displayLarge: AppTextStyles.display1,
-        displayMedium: AppTextStyles.display2,
-        headlineLarge: AppTextStyles.h1,
-        headlineMedium: AppTextStyles.h2,
-        headlineSmall: AppTextStyles.h3,
-        bodyLarge: AppTextStyles.bodyLarge,
-        bodyMedium: AppTextStyles.bodyMedium,
-        bodySmall: AppTextStyles.bodySmall,
-        labelLarge: AppTextStyles.button,
+        displayLarge: AppTheme.textStyle.display1,
+        displayMedium: AppTheme.textStyle.display2,
+        headlineLarge: AppTheme.textStyle.h1,
+        headlineMedium: AppTheme.textStyle.h2,
+        headlineSmall: AppTheme.textStyle.h3,
+        bodyLarge: AppTheme.textStyle.bodyLarge,
+        bodyMedium: AppTheme.textStyle.bodyMedium,
+        bodySmall: AppTheme.textStyle.bodySmall,
+        labelLarge: AppTheme.textStyle.button,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(88, AppSpacing.buttonHeight),
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.medium),
-          textStyle: AppTextStyles.button,
+          minimumSize: Size(88, AppTheme.spacing.buttonHeight),
+          padding: EdgeInsets.symmetric(horizontal: AppTheme.spacing.medium),
+          textStyle: AppTheme.textStyle.button,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+            borderRadius: BorderRadius.circular(AppTheme.spacing.radiusMedium),
           ),
         ),
       ),
@@ -165,32 +71,151 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
-      primaryColor: AppColors.primary,
-      scaffoldBackgroundColor: AppColors.darkGrey,
+      primaryColor: AppTheme.color.primary,
+      scaffoldBackgroundColor: AppTheme.color.darkGrey,
       textTheme: TextTheme(
-        displayLarge: AppTextStyles.display1.copyWith(color: AppColors.white),
-        displayMedium: AppTextStyles.display2.copyWith(color: AppColors.white),
-        headlineLarge: AppTextStyles.h1.copyWith(color: AppColors.white),
-        headlineMedium: AppTextStyles.h2.copyWith(color: AppColors.white),
-        headlineSmall: AppTextStyles.h3.copyWith(color: AppColors.white),
-        bodyLarge: AppTextStyles.bodyLarge.copyWith(color: Colors.white),
-        bodyMedium: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
-        bodySmall: AppTextStyles.bodySmall.copyWith(color: AppColors.white),
-        labelLarge: AppTextStyles.button.copyWith(color: AppColors.white),
+        displayLarge:
+            AppTheme.textStyle.display1.copyWith(color: AppTheme.color.white),
+        displayMedium:
+            AppTheme.textStyle.display2.copyWith(color: AppTheme.color.white),
+        headlineLarge:
+            AppTheme.textStyle.h1.copyWith(color: AppTheme.color.white),
+        headlineMedium:
+            AppTheme.textStyle.h2.copyWith(color: AppTheme.color.white),
+        headlineSmall:
+            AppTheme.textStyle.h3.copyWith(color: AppTheme.color.white),
+        bodyLarge: AppTheme.textStyle.bodyLarge.copyWith(color: Colors.white),
+        bodyMedium:
+            AppTheme.textStyle.bodyMedium.copyWith(color: AppTheme.color.white),
+        bodySmall:
+            AppTheme.textStyle.bodySmall.copyWith(color: AppTheme.color.white),
+        labelLarge:
+            AppTheme.textStyle.button.copyWith(color: AppTheme.color.white),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(88, AppSpacing.buttonHeight),
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.medium),
-          textStyle: AppTextStyles.button.copyWith(color: AppColors.white),
+          minimumSize: Size(88, AppTheme.spacing.buttonHeight),
+          padding: EdgeInsets.symmetric(horizontal: AppTheme.spacing.medium),
+          textStyle:
+              AppTheme.textStyle.button.copyWith(color: AppTheme.color.white),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+            borderRadius: BorderRadius.circular(AppTheme.spacing.radiusMedium),
           ),
         ),
       ),
       // Others.........
     );
   }
+}
+
+class AppColors {
+  // Brand Colors
+  Color get primary => const Color(0xFF00C85C);
+  Color get secondary => const Color(0xFF00BFA5);
+  Color get accent => Colors.greenAccent;
+
+  // Neutral Colors
+  Color get black => const Color(0xFF2A2A2A);
+  Color get white => const Color(0xFFFFFFFF);
+  Color get grey => const Color(0xFF9E9E9E);
+  Color get darkGrey => const Color(0xFF424242);
+  Color get lightGrey => const Color(0xFFE0E0E0);
+
+  // Semantic Colors
+  Color get success => const Color(0xFF4CAF50);
+  Color get error => const Color(0xFFD32F2F);
+  Color get warning => const Color(0xFFFFA000);
+  Color get info => const Color(0xFF1976D2);
+
+  // Background Colors
+  Color get background => const Color(0xFFFAFAFA);
+  Color get surface => const Color(0xFFFFFFFF);
+}
+
+class AppTextStyles {
+  // Display Styles
+  TextStyle get display1 => TextStyle(
+        fontSize: 48.w,
+        fontWeight: FontWeight.bold,
+      );
+
+  TextStyle get display2 => TextStyle(
+        fontSize: 40.w,
+        fontWeight: FontWeight.w600,
+      );
+
+  // Heading Styles
+  TextStyle get h1 => TextStyle(
+        fontSize: 32.w,
+        fontWeight: FontWeight.bold,
+      );
+
+  TextStyle get h2 => TextStyle(
+        fontSize: 24.w,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle get h3 => TextStyle(
+        fontSize: 20.w,
+        fontWeight: FontWeight.w600,
+      );
+  // Body Styles
+  TextStyle get bodyLarge => GoogleFonts.nunito(
+        fontSize: 16.w,
+        fontWeight: FontWeight.w700,
+      );
+
+  TextStyle get bodyMedium => GoogleFonts.nunito(
+        fontSize: 14.w,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle get bodySmall => GoogleFonts.nunito(
+        fontSize: 12.w,
+        fontWeight: FontWeight.normal,
+      );
+
+  // Button Text Styles
+  TextStyle get button => GoogleFonts.nunito(
+        fontSize: 14.w,
+        fontWeight: FontWeight.w500,
+      );
+
+  // Caption and Overline
+  TextStyle get caption => GoogleFonts.nunito(
+        fontSize: 12.w,
+        fontWeight: FontWeight.normal,
+      );
+
+  TextStyle get overline => GoogleFonts.nunito(
+        fontSize: 10.w,
+        fontWeight: FontWeight.normal,
+      );
+}
+
+class AppSpacing {
+  // Padding and Margin
+  double get xs => 4.0.w;
+  double get small => 8.0.w;
+  double get medium => 16.0.w;
+  double get large => 24.0.w;
+  double get xl => 32.0.w;
+  double get xxl => 48.0.w;
+
+  // Button Sizes
+  double get buttonHeight => 55.0.w;
+  double get buttonSmallHeight => 36.0.w;
+  double get buttonLargeHeight => 56.0.w;
+
+  // Icon Sizes
+  double get iconSmall => 16.0.w;
+  double get iconMedium => 24.0.w;
+  double get iconLarge => 32.0.w;
+
+  // Border Radius
+  double get radiusSmall => 4.0.w;
+  double get radiusMedium => 8.0.w;
+  double get radiusLarge => 16.0.w;
 }
 
 class AppThemeNotifier extends ChangeNotifier {
@@ -217,7 +242,7 @@ class TestScreen extends StatelessWidget {
               themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           // Provider.of<AppThemeNotifier>(context).themeData,
           debugShowCheckedModeBanner: false,
-          home: const MyPage());
+          home: const ProfilePage());
     });
   }
 }
@@ -235,17 +260,17 @@ class MyPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: AppSpacing.large),
+                SizedBox(height: AppTheme.spacing.large),
                 CustomAppBar(
                   title: 'Theme Toggle Demo',
                   isBackButton: false,
                   bgcolor: themeProvider.isDarkMode
-                      ? AppColors.darkGrey
-                      : AppColors.primary,
-                  fontSize: AppTextStyles.bodyMedium.fontSize,
+                      ? AppTheme.color.darkGrey
+                      : AppTheme.color.primary,
+                  fontSize: AppTheme.textStyle.bodyMedium.fontSize,
                   textColor: themeProvider.isDarkMode
-                      ? AppColors.white
-                      : AppColors.black,
+                      ? AppTheme.color.white
+                      : AppTheme.color.black,
                   leftWidgets: const [],
                   rightWidgets: [
                     Consumer<AppThemeNotifier>(
@@ -264,10 +289,10 @@ class MyPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: AppSpacing.xl),
+                SizedBox(height: AppTheme.spacing.xl),
                 Text(
                   'Current Theme: ${themeProvider.isDarkMode ? "Dark" : "Light"}',
-                  style: AppTextStyles.h2,
+                  style: AppTheme.textStyle.h2,
                 ),
                 const SizedBox(height: 20),
                 ButtonTwo(
@@ -276,31 +301,31 @@ class MyPage extends StatelessWidget {
                       ? 'Switch to Light Mode'
                       : 'Switch to Dark Mode',
                   topIcon: themeProvider.isDarkMode
-                      ? Icon(Icons.light_mode, size: AppSpacing.iconLarge)
-                      : Icon(Icons.dark_mode, size: AppSpacing.iconLarge),
-                  borderRadius: AppSpacing.radiusMedium,
+                      ? Icon(Icons.light_mode, size: AppTheme.spacing.iconLarge)
+                      : Icon(Icons.dark_mode, size: AppTheme.spacing.iconLarge),
+                  borderRadius: AppTheme.spacing.radiusMedium,
                   color: themeProvider.isDarkMode
-                      ? AppColors.darkGrey
-                      : AppColors.primary,
+                      ? AppTheme.color.darkGrey
+                      : AppTheme.color.primary,
                   darknessLevel: 0.0875,
                   onTap: () {
                     themeProvider.toggleTheme();
                   },
                 ),
-                SizedBox(height: AppSpacing.medium),
+                SizedBox(height: AppTheme.spacing.medium),
                 ButtonTwo(
                   width: 200,
                   text: 'Test my color 1',
-                  height: AppSpacing.buttonHeight,
-                  color: AppColors.error,
+                  height: AppTheme.spacing.buttonHeight,
+                  color: AppTheme.color.error,
                   darknessLevel: 0.0875,
                   onTap: () {},
                 ),
-                SizedBox(height: AppSpacing.medium),
+                SizedBox(height: AppTheme.spacing.medium),
                 ButtonTwo(
                   width: 200,
                   text: 'Test my color 2',
-                  height: AppSpacing.buttonHeight,
+                  height: AppTheme.spacing.buttonHeight,
                   color: Colors.red,
                   darknessLevel: 0.0875,
                   onTap: () {},
