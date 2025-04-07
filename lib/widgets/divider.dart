@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:testmilestone/widgets/themeWidget.dart';
 
 class DividerWidget extends StatelessWidget {
-  final Color color;
-  final double thickness;
-  final EdgeInsetsGeometry padding;
-  final double indent;
-  final double endIndent;
-  final double height;
+  final Color? color;
+  final double? thickness;
+  final EdgeInsetsGeometry? padding;
+  final double? indent;
+  final double? endIndent;
+  final double? height;
   const DividerWidget({
     super.key,
-    this.color = const Color.fromARGB(255, 217, 216, 217),
-    this.thickness = 0.5,
-    this.height = 0.0,
-    this.padding = const EdgeInsets.symmetric(horizontal: 15.0),
-    this.indent = 0.0,
-    this.endIndent = 0.0,
+    this.color,
+    this.thickness,
+    this.height,
+    this.padding,
+    this.indent,
+    this.endIndent,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding,
-      child: Divider(
-        color: color,
-        thickness: thickness,
-        indent: indent,
-        endIndent: endIndent,
-        height: height,
+    return AppThemeWidget(
+      builder: (context, colorTheme, constTheme, changeTheme, isDark) =>
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        child: Divider(
+          color: isDark
+              ? constTheme.Color.dividerColorD
+              : constTheme.Color.dividerColorL,
+          thickness: thickness ?? 0.8.w,
+          indent: indent ?? 0.0.w,
+          endIndent: endIndent ?? 0.0.w,
+          height: height ?? 0.0.w,
+        ),
       ),
     );
   }

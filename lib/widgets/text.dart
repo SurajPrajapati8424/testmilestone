@@ -11,6 +11,7 @@ class TextWidget extends StatelessWidget {
   final TextOverflow? textOverflow;
   final int? maxLines;
   final bool? softWrap;
+  final TextStyle? textStyle;
   @override
   const TextWidget({
     super.key,
@@ -23,6 +24,7 @@ class TextWidget extends StatelessWidget {
     this.textOverflow,
     this.maxLines,
     this.softWrap,
+    this.textStyle,
   });
 
   @override
@@ -33,12 +35,13 @@ class TextWidget extends StatelessWidget {
       textAlign: textAlign,
       maxLines: maxLines,
       softWrap: softWrap,
-      style: GoogleFonts.nunito(
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-      ),
+      style: textStyle ??
+          GoogleFonts.nunito(
+            color: color,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            fontStyle: fontStyle,
+          ),
     );
   }
 }

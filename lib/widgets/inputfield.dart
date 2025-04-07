@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:testmilestone/widgets/themeWidget.dart';
 
 import 'divider.dart';
 
@@ -63,43 +63,53 @@ class _AnswerInputWidgetState extends State<AnswerInputWidget> {
   @override
   Widget build(BuildContext context) {
     // var hasDivider = true;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TextFormField(
-          controller: _controller,
-          focusNode: widget.focusNode,
-          autofocus: false,
-          maxLines: widget.maxLines,
-          maxLength: widget.maxLength,
-          enabled: widget.enabled,
-          obscureText: false,
-          keyboardType: widget.keyboardType ?? TextInputType.text,
-          decoration: InputDecoration(
-            counterText: '',
-            isDense: true,
-            hintStyle: GoogleFonts.nunito(
-                color: widget.textColor ?? Colors.white,
-                fontSize: widget.fontSize,
-                fontWeight: widget.fontWeight),
-            hintText: widget.hintText,
-            filled: widget.filled,
-            border: InputBorder.none,
-            suffixIcon: widget.rightIcon,
-          ),
-          textAlign: widget.isCenter ? TextAlign.center : TextAlign.left,
-          style: GoogleFonts.nunito(
-              color: widget.textColor ?? Colors.white,
-              fontSize: widget.fontSize,
-              fontWeight: widget.fontWeight),
-        ),
-        if (widget.hasDivider!)
-          DividerWidget(
-            thickness: widget.dividerThickness ?? 2,
-            color: widget.dividerColor ?? Colors.green,
-            padding: EdgeInsets.zero,
-          )
-      ],
+    return AppThemeWidget(
+      builder: (context, colorTheme, constTheme, changeTheme, isDark) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextFormField(
+              controller: _controller,
+              focusNode: widget.focusNode,
+              autofocus: false,
+              maxLines: widget.maxLines,
+              maxLength: widget.maxLength,
+              enabled: widget.enabled,
+              obscureText: false,
+              keyboardType: widget.keyboardType ?? TextInputType.text,
+              decoration: InputDecoration(
+                counterText: '',
+                isDense: true,
+                hintStyle: colorTheme.textTheme.navTitleTextStyle.copyWith(
+                    color: widget.textColor,
+                    fontSize: widget.fontSize,
+                    fontWeight: widget.fontWeight),
+                // GoogleFonts.nunito(
+                //     color: widget.textColor ?? Colors.white,
+                //     fontSize: widget.fontSize,
+                //     fontWeight: widget.fontWeight),
+                hintText: widget.hintText,
+                filled: widget.filled,
+                border: InputBorder.none,
+                suffixIcon: widget.rightIcon,
+              ),
+              textAlign: widget.isCenter ? TextAlign.center : TextAlign.left,
+              style: colorTheme.textTheme.navTitleTextStyle.copyWith(
+                  color: widget.textColor,
+                  fontSize: widget.fontSize,
+                  fontWeight: widget.fontWeight)
+              //  GoogleFonts.nunito(
+              //     color: widget.textColor ?? Colors.white,
+              //     fontSize: widget.fontSize,
+              //     fontWeight: widget.fontWeight),
+              ),
+          if (widget.hasDivider!)
+            DividerWidget(
+              thickness: widget.dividerThickness ?? 2,
+              color: widget.dividerColor ?? colorTheme.primaryColor,
+              padding: EdgeInsets.zero,
+            )
+        ],
+      ),
     );
   }
 
