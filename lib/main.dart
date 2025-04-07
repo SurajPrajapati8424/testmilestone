@@ -15,6 +15,7 @@ import 'package:testmilestone/screens/csvpickerscreen.dart';
 import 'package:testmilestone/screens/osmscreen.dart';
 import 'function/countdown.dart';
 import 'function/inappviewscreen.dart';
+import 'function/inappviewscreenCopy.dart';
 import 'function/webview.dart';
 import 'screens/achievementandlogout.dart';
 import 'screens/activityrecognition.dart';
@@ -370,10 +371,14 @@ class HomePage extends StatelessWidget {
                           onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const InAppWebViewScreen(
-                                        url: "https://pub.dev/",
-                                      ))),
+                                builder: (context) =>
+                                    // const InAppWebViewScreen(
+                                    //   url: "https://pub.dev/",
+                                    // )
+                                    const InAppWebViewScreenCopy(
+                                  url: "https://pub.dev/",
+                                ),
+                              )),
                         ),
                         Button(
                             text: 'Profile Setting',
