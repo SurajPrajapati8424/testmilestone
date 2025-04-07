@@ -63,6 +63,7 @@ import 'screens/playerstatus.dart';
 import 'screens/popscopescreen.dart';
 import 'screens/popuppremiumcontent.dart';
 import 'screens/profile.dart';
+import 'screens/profileSetting.dart';
 import 'screens/quillreadonly.dart';
 import 'screens/quiz_setting.dart';
 import 'screens/rating.dart';
@@ -374,6 +375,13 @@ class HomePage extends StatelessWidget {
                                         url: "https://pub.dev/",
                                       ))),
                         ),
+                        Button(
+                            text: 'Profile Setting',
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const Profilesetting()))),
                         Button(
                           text: 'rate',
                           onTap: () {
