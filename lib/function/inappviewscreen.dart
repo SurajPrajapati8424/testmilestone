@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -91,7 +92,8 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
       name: 'testMilestoneCookie',
       value: 'testMilestoneCookieValue',
       expiresDate: expiresDate,
-      isSecure: true, // Ensure this matches the URL scheme (true for HTTPS)
+      isSecure: url.scheme ==
+          'https', // Ensure this matches the URL scheme (true for HTTPS)
     );
     debugPrint("Cookie set successfully");
 
@@ -137,6 +139,19 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
       I/flutter (30803): Cookie deleted successfully
       I/flutter (30803): Cookie after deletion: null
      */
+  }
+
+  // 5. Web Storage Manager
+  Future<void> webManager() async {
+    // get the WebStorageManager instance
+    WebStorageManager webStorageManager = WebStorageManager.instance();
+    if (!kIsWeb) {
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        // if current platform is Android, delete all data.
+        await webStorageManager.deleteAllData();
+        debugPrint("DONE DELETING");
+      }
+    }
   }
 
   @override
@@ -195,6 +210,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
                 icon: const Icon(Icons.refresh),
                 onPressed: () async {
                   await webViewController.reload();
+                  await webManager();
                 },
               ),
               IconButton(
