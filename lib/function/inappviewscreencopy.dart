@@ -187,13 +187,12 @@ class _FileDownloadWebViewState extends State<FileDownloadWebView> {
   }
 
   Widget downloadIndicator() {
-    return isDownloading
-        ? LinearProgressIndicator(
-            value: downloadProgress,
-            color: ConstTheme_().Color.warning,
-            minHeight: 5,
-          )
-        : const SizedBox.shrink();
+    if (!isDownloading) return const SizedBox.shrink();
+    return LinearProgressIndicator(
+      value: downloadProgress,
+      color: ConstTheme_().Color.warning,
+      minHeight: 5,
+    );
   }
 
   @override
@@ -255,11 +254,19 @@ class _FileDownloadWebViewState extends State<FileDownloadWebView> {
                               totalBytes > 0 ? receivedBytes / totalBytes : 0;
                         });
                       },
-                      onDownloadComplete: () {
-                        setState(() {
-                          isDownloading = false;
-                          downloadProgress = 0;
-                        });
+                      onDownloadComplete: (isComplete) {
+                        debugPrint(
+                            'onDownloadComplete called with: $isComplete');
+                        if (mounted) {
+                          setState(() {
+                            isDownloading = false;
+                            downloadProgress = 0;
+                            debugPrint(
+                                'State updated: isDownloading = $isDownloading');
+                          });
+                          // Force another setState after a short delay to ensure UI updates
+                          Future.delayed(const Duration(milliseconds: 100));
+                        }
                       },
                       onDownloadError: (error) {
                         setState(() {
@@ -286,12 +293,11 @@ class _FileDownloadWebViewState extends State<FileDownloadWebView> {
                   onConsoleMessage: (controller, consoleMessage) {},
                 ),
                 indicator(),
-                if (isDownloading)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 70, horizontal: 20),
-                    child: downloadIndicator(),
-                  ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+                  child: downloadIndicator(),
+                ),
               ],
             ),
           ),
@@ -317,9 +323,8 @@ Future<void> downloadWebViewFile(
     {required DownloadStartRequest downloadStartRequest,
     required Null Function(dynamic receivedBytes, dynamic totalBytes)
         onDownloadProgress,
-    required Null Function() onDownloadComplete,
-    Function(String error)? onDownloadError,
-    required}) async {
+    required Null Function(bool isComplete) onDownloadComplete,
+    Function(String error)? onDownloadError}) async {
   final String url = downloadStartRequest.url.toString();
   String fileName = downloadStartRequest.url.pathSegments.last;
   final String? mimeType = downloadStartRequest.mimeType;
@@ -358,7 +363,7 @@ Future<void> downloadWebViewFile(
     // 5. Get total file size
     final int totalBytes = response.contentLength ?? 0;
     int receivedBytes = 0;
-    // final List<int> bytes = [];
+    bool hasCompletedDownload = false; // Track completion status
 
     debugPrint('totalBytes: $totalBytes');
     debugPrint('receivedBytes: $receivedBytes');
@@ -373,21 +378,48 @@ Future<void> downloadWebViewFile(
         receivedBytes += chunk.length;
         onDownloadProgress(receivedBytes, totalBytes);
         sink.add(chunk);
+        // Add this check to detect completion based on bytes
+        if (totalBytes > 0 &&
+            receivedBytes >= totalBytes &&
+            !hasCompletedDownload) {
+          debugPrint(
+              'Download completed by bytes check: $receivedBytes/$totalBytes');
+          hasCompletedDownload = true; // Prevent multiple completions
+          // Force complete on main thread
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            onDownloadComplete(true);
+          });
+        }
       },
-      onDone: () async {
-        await sink.close();
-        onDownloadComplete();
-      },
+      // onDone: () async {
+      //   debugPrint('Stream onDone triggered');
+      //   await sink.close();
+      //   debugPrint('Sink closed');
+      //   // Add a small delay to ensure UI updates properly after stream completes
+      //   await Future.delayed(const Duration(milliseconds: 100));
+      //   // Only call onDownloadComplete if it wasn't already called by the bytes check
+      //   if (!hasCompletedDownload) {
+      //     hasCompletedDownload = true;
+
+      //     // Ensure it runs on UI thread
+      //     WidgetsBinding.instance.addPostFrameCallback((_) {
+      //       onDownloadComplete(true);
+      //       debugPrint('onDownloadComplete callback executed from onDone');
+      //     });
+      //   }
+      // },
       onError: (error) {
         sink.close();
         file.delete(); // Remove incomplete file
         if (onDownloadError != null) {
           onDownloadError(error.toString());
         }
+        debugPrint('Download error: $error');
       },
       cancelOnError: true,
     ).asFuture();
   } catch (e) {
+    debugPrint('Exception during download: $e');
     if (onDownloadError != null) {
       onDownloadError(e.toString());
     } else {
