@@ -368,17 +368,23 @@ class HomePage extends StatelessWidget {
                         ),
                         Button(
                           text: 'InAppReload-Navigation',
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    // const InAppWebViewScreen(
-                                    //   url: "https://pub.dev/",
-                                    // )
-                                    const InAppWebViewScreenCopy(
-                                  url: "https://pub.dev/",
-                                ),
-                              )),
+                          onTap: () =>
+                              //
+                              showWebViewPopup(
+                            context,
+                            'https://pub.dev/',
+                          ),
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           // const InAppWebViewScreen(
+                          //           //   url: "https://pub.dev/",
+                          //           // )
+                          //           const InAppWebViewScreenCopy(
+                          //         url: "https://pub.dev/",
+                          //       ),
+                          //     )),
                         ),
                         Button(
                             text: 'Profile Setting',
